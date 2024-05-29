@@ -1,10 +1,17 @@
 <script setup>
+import MainButton from "@/components/MainButton.vue";
 import { LogoIcon } from "@/assets/icons/logo";
 import { ref } from "vue";
 const login = ref("");
 const parol = ref("");
+const error = ref(null);
 const handleSubmit = () => {
+  if (login.value.length <= 4 || parol.value.length <= 4) {
+    error.value = "Login yoki parol xatolik mavjud";
+    return;
+  }
   console.log(parol.value, login.value);
+  error.value = null;
 };
 </script>
 <template>
@@ -24,7 +31,11 @@ const handleSubmit = () => {
         <label for="parol">PAROL</label>
         <input type="password" v-model="parol" id="parol" />
       </div>
-      <button>Kirish</button>
+      <div class="check-bot"></div>
+      <div class="btn">
+        <main-button title="Kirish" />
+        <p v-if="error" class="error">{{ error }}</p>
+      </div>
     </form>
   </div>
 </template>
@@ -54,9 +65,10 @@ const handleSubmit = () => {
     border: 1px solid #e0e7ff;
     border-radius: 10px;
     padding: 32px;
-    h2 {
-      padding-bottom: 30px;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
     .input {
       display: flex;
       flex-direction: column;
@@ -78,6 +90,16 @@ const handleSubmit = () => {
         line-height: 14.22px;
         letter-spacing: 1.125px;
         text-align: left;
+      }
+    }
+    .btn {
+      position: relative;
+      .error {
+        text-align: center;
+        position: absolute;
+        color: red;
+        font-size: 12px;
+        top: 105%;
       }
     }
   }
