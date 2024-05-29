@@ -2,17 +2,26 @@
 import MainButton from "@/components/MainButton.vue";
 import { LogoIcon } from "@/assets/icons/logo";
 import { ref } from "vue";
-const login = ref("");
-const parol = ref("");
+import { useAuthStore } from "@/store/auth";
+import { useRoute, useRouter } from "vue-router";
+
+const authStore = useAuthStore();
+const login = ref("metsenatadmin");
+const parol = ref("uF9aH1vZ3bV2kN2y");
 const error = ref(null);
+const router = useRouter();
+const route = useRoute();
 const handleSubmit = () => {
   if (login.value.length <= 4 || parol.value.length <= 4) {
     error.value = "Login yoki parol xatolik mavjud";
     return;
   }
-  console.log(parol.value, login.value);
+  authStore.Login({ username: login.value, password: parol.value });
+  const redirect = route.query.redirect || "/";
+  router.push(redirect);
   error.value = null;
 };
+
 </script>
 <template>
   <div class="container">
@@ -26,10 +35,12 @@ const handleSubmit = () => {
       <div class="input">
         <label for="login">LOGIN</label>
         <input type="text" v-model="login" id="login" />
+        <p>metsenatadmin</p>
       </div>
       <div class="input">
         <label for="parol">PAROL</label>
         <input type="password" v-model="parol" id="parol" />
+        <p>uF9aH1vZ3bV2kN2y</p>
       </div>
       <div class="check-bot"></div>
       <div class="btn">

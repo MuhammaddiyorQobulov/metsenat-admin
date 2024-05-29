@@ -1,14 +1,13 @@
 <script setup>
 import { defineProps, defineEmits } from "vue";
 
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     required: true,
   },
 });
 const emits = defineEmits(["onClick"]);
-console.log(props);
 </script>
 
 <template>
