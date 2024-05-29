@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import NavBar from "../layouts/NavBar.vue";
+</script>
 <template>
-    <h1>Home</h1>
-</template>
+  <nav-bar />
+  <h1>Home</h1>
+</template> 

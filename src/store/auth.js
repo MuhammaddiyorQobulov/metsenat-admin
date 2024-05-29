@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import api from "@/utils/api";
+
 export const useAuthStore = defineStore("authStore", {
   state: () => ({
     isLoading: false,
@@ -22,6 +23,15 @@ export const useAuthStore = defineStore("authStore", {
       } finally {
         this.isLoading = false;
       }
+    },
+    LogOut() {
+      this.isLoading = true;
+      setTimeout(() => {
+        localStorage.removeItem("token");
+        this.user = null;
+        this.token = null;
+        this.isLoading = false;
+      }, 1000);
     },
   },
 });
