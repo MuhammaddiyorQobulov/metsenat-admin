@@ -8,11 +8,13 @@ const routes = [
     path: "/",
     name: "home",
     component: HomeView,
+    meta: { requiresAuth: true },
   },
   {
     path: "/about",
     name: "about",
     component: () => import("../views/AboutView.vue"),
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -29,6 +31,24 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+function isAuthenticated() {
+  return !!localStorage.getItem("token");
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (!isAuthenticated()) {
+      next({
+        path: "/login",
+        query: { redirect: to.fullPath },
+      });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

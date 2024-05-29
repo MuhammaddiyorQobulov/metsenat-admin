@@ -3,26 +3,29 @@ import MainButton from "@/components/MainButton.vue";
 import { LogoIcon } from "@/assets/icons/logo";
 import { ref } from "vue";
 import { useAuthStore } from "@/store/auth";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
 const login = ref("metsenatadmin");
 const parol = ref("uF9aH1vZ3bV2kN2y");
 const error = ref(null);
 const router = useRouter();
-const route = useRoute();
-const handleSubmit = () => {
+
+const handleSubmit = async () => {
   if (login.value.length <= 4 || parol.value.length <= 4) {
     error.value = "Login yoki parol xatolik mavjud";
     return;
   }
-  authStore.Login({ username: login.value, password: parol.value });
-  const redirect = route.query.redirect || "/";
-  router.push(redirect);
+  await authStore.Login({ username: login.value, password: parol.value });
+  if (authStore.error) {
+    error.value = authStore.error;
+    return;
+  }
+  router.push("/");
   error.value = null;
 };
-
 </script>
+
 <template>
   <div class="container">
     <div class="logo">

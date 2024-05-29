@@ -1,32 +1,24 @@
 import { defineStore } from "pinia";
-
+import api from "@/utils/api";
 export const useAuthStore = defineStore("authStore", {
   state: () => ({
     isLoading: false,
     user: null,
     token: localStorage.getItem("token"),
+    error: null,
   }),
 
   actions: {
     async Login({ username, password }) {
       this.isLoading = true;
       try {
-        const res = await fetch("https://club.metsenat.uz/api/v1/auth/login/", {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          method: "POST",
-          body: JSON.stringify({
-            username,
-            password,
-          }),
-        });
-        const data = await res.json();
-        this.user = data;
+        const res = await api.post("/auth/login/", { username, password });
+        const data = await res.data;
         localStorage.setItem("token", data.refresh);
+        this.user = data;
+        this.error = null;
       } catch (err) {
-        console.log(err);
+        this.error = err.message;
       } finally {
         this.isLoading = false;
       }
