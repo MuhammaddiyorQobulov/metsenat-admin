@@ -7,11 +7,13 @@
 }
 
 body {
+  background-color: $primary;
   h1 {
-    color: #28293d;
+    color: $main-title;
   }
 }
 
 .container {
-  padding: 0 120px;
+  padding-left: 120px !important;
+  padding-right: 120px !important;
 }

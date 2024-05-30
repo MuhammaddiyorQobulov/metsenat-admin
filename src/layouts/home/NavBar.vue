@@ -37,6 +37,7 @@ const HandleLogout = () => {
 </template>
 
 <style lang="scss" scoped>
+@import "../../styles/variables";
 .nav-bar {
   display: flex;
   align-items: center;
@@ -44,6 +45,7 @@ const HandleLogout = () => {
   height: 60px;
   padding-top: 12px;
   padding-bottom: 12px;
+  background: $white;
 
   .logo {
     display: flex;
@@ -58,7 +60,7 @@ const HandleLogout = () => {
 
     .tag {
       border-radius: 7px;
-      color: #00ae69;
+      color: $green-tag ;
     }
   }
 
@@ -73,7 +75,7 @@ const HandleLogout = () => {
       gap: 10px;
       padding: 5px 10px;
       border-radius: 6px;
-      background: #f1f1f3;
+      background: $secondary;
       .user-name {
         font-size: 16px;
         font-weight: 700;
@@ -82,7 +84,7 @@ const HandleLogout = () => {
       .user-icon {
         width: 25px;
         height: 25px;
-        background: #00ae69;
+        background: $green-tag;
         padding: 5px;
         border-radius: 3px;
       }

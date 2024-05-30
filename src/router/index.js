@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import NotFoundView from "../views/NotFoundView.vue";
+import DashboardTab from "@/views/Home/DashboardTab.vue";
+import SponsorsList from "@/views/Home/SponsorsList.vue";
+import StudentsList from "@/views/Home/StudentsList.vue";
 
 const routes = [
   {
@@ -9,6 +12,23 @@ const routes = [
     name: "home",
     component: HomeView,
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "",
+        name: "dashboard",
+        component: DashboardTab,
+      },
+      {
+        path: "sponsors",
+        name: "sponsors",
+        component: SponsorsList,
+      },
+      {
+        path: "students",
+        name: "students",
+        component: () => StudentsList,
+      },
+    ],
   },
   {
     path: "/about",

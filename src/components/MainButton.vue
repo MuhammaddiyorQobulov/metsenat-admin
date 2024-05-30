@@ -15,9 +15,10 @@ const emits = defineEmits(["onClick"]);
 </template>
 
 <style lang="scss" scoped>
+@import "../styles/variables";
 .btn-main {
   border: none;
-  background-color: #2e5bff;
+  background-color: $blue;
   color: white;
   border-radius: 6px;
   font-size: 15px;
