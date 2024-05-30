@@ -1,5 +1,5 @@
 import { defineStore, getActivePinia } from "pinia";
-import api from "@/utils/api";
+import api from "@/utils/api/api";
 import { useMainStore } from "./main";
 
 export const useSponsorStore = defineStore("sponsorStore", {

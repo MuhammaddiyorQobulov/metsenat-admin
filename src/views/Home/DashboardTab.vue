@@ -3,40 +3,26 @@ import { onMounted } from "vue";
 import { CopuraIcon } from "../../assets/icons/copura";
 import { useDashboardStore } from "../../store/dashboard";
 
-const authStore = useDashboardStore();
+const dashboardStore = useDashboardStore();
 onMounted(() => {
-  authStore.getDashboardDatas();
+  dashboardStore.getDashboardDatas();
 });
 </script>
 
 <template>
   <div class="container">
-    <div class="costs">
-      <div class="cost">
+    <div class="costs" v-if="dashboardStore.datas">
+      <div
+        class="cost"
+        v-for="cost in Object.keys(dashboardStore.datas)"
+        :key="cost"
+      >
         <nav class="tag">
           <copura-icon />
         </nav>
         <div>
           <p class="title">Cost</p>
-          <p class="amount">1 684 325 000</p>
-        </div>
-      </div>
-      <div class="cost">
-        <nav class="tag">
-          <copura-icon />
-        </nav>
-        <div>
-          <p class="title">Cost</p>
-          <p class="amount">1 684 325 000</p>
-        </div>
-      </div>
-      <div class="cost">
-        <nav class="tag">
-          <copura-icon />
-        </nav>
-        <div>
-          <p class="title">Cost</p>
-          <p class="amount">1 684 325 000</p>
+          <p class="amount">{{dashboardStore.datas[cost]}}</p>
         </div>
       </div>
     </div>
