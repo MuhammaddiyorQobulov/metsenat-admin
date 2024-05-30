@@ -2,7 +2,9 @@
 import { onMounted } from "vue";
 import { CopuraIcon } from "../../assets/icons/copura";
 import { useDashboardStore } from "../../store/dashboard";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n();
 const dashboardStore = useDashboardStore();
 onMounted(() => {
   dashboardStore.getDashboardDatas();
@@ -17,12 +19,12 @@ onMounted(() => {
         v-for="cost in Object.keys(dashboardStore.datas)"
         :key="cost"
       >
-        <nav class="tag">
+        <nav class="tag" :class="cost">
           <copura-icon />
         </nav>
         <div>
-          <p class="title">Cost</p>
-          <p class="amount">{{dashboardStore.datas[cost]}}</p>
+          <p class="title">{{ t(`dashboard.total_paid`) }}</p>
+          <p class="amount">{{ dashboardStore.datas[cost] }}</p>
         </div>
       </div>
     </div>
@@ -58,12 +60,21 @@ onMounted(() => {
       padding: 10px;
       border-radius: 10px;
     }
+    .total_need {
+      color: $tag-yellow;
+      background: rgba($tag-yellow, 0.1);
+    }
+    .total_must_pay {
+      color: $tag-orrange;
+      background: rgba($tag-orrange, 0.1);
+    }
     .title {
       font-size: 12px;
       font-weight: 400;
       line-height: 12px;
       text-align: left;
       color: $title;
+      padding-bottom: 5px;
     }
     .amount {
       font-size: 20px;
