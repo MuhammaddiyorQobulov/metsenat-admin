@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
+import { defineStore, getActivePinia } from "pinia";
 import api from "@/utils/api";
+import { useMainStore } from "./main";
 
 export const useAuthStore = defineStore("authStore", {
   state: () => ({
-    isLoading: false,
     user: null,
     token: localStorage.getItem("token"),
     error: null,
@@ -11,7 +11,8 @@ export const useAuthStore = defineStore("authStore", {
 
   actions: {
     async Login({ username, password }) {
-      this.isLoading = true;
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
       try {
         const res = await api.post("/auth/login/", { username, password });
         const data = await res.data;
@@ -21,16 +22,17 @@ export const useAuthStore = defineStore("authStore", {
       } catch (err) {
         this.error = err.message;
       } finally {
-        this.isLoading = false;
+        mainStore.toggleIsFetching(false);
       }
     },
     LogOut() {
-      this.isLoading = true;
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
       setTimeout(() => {
         localStorage.removeItem("token");
         this.user = null;
         this.token = null;
-        this.isLoading = false;
+        mainStore.toggleIsFetching(false);
       }, 1000);
     },
   },

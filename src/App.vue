@@ -1,12 +1,12 @@
 <script setup>
-import LoaderComponent from "./layouts/LoaderComponent.vue";
-import { useAuthStore } from "./store/auth";
-const authStore = useAuthStore();
+import LoaderComponent from "./components/LoaderComponent.vue";
+import { useMainStore } from "./store/main";
+const mainStore = useMainStore();
 </script>
 
 <template>
   <div class="views">
-    <loader-component :visible="authStore.isLoading" />
+    <loader-component :visible="mainStore.isFetching" />
     <router-view />
   </div>
 </template>
