@@ -10,7 +10,7 @@ export const useDashboardStore = defineStore("DashboardStore", {
   actions: {
     async getDashboardDatas() {
       const mainStore = useMainStore(getActivePinia());
-      mainStore.isFetching(true);
+      mainStore.toggleIsFetching(true);
       try {
         const res = await api("/dashboard/");
         this.datas = await res.data;
@@ -18,7 +18,7 @@ export const useDashboardStore = defineStore("DashboardStore", {
       } catch (err) {
         this.error = err.message;
       } finally {
-        mainStore.isFetching(false);
+        mainStore.toggleIsFetching(false);
       }
     },
   },
