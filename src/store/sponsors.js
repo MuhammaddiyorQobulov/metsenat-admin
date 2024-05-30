@@ -4,7 +4,8 @@ import { useMainStore } from "./main";
 
 export const useSponsorStore = defineStore("sponsorStore", {
   state: () => ({
-    sponsors: null,
+    datas: null,
+    error: null,
   }),
 
   actions: {
@@ -13,9 +14,10 @@ export const useSponsorStore = defineStore("sponsorStore", {
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get("/sponsor-list/", {
-          params: { page: 1, page_size: 1 },
+          page: 1,
+          page_size: 10,
         });
-        console.log(await res.json());
+        this.datas = await res.data.results;
       } catch (err) {
         this.error = err.message;
       } finally {

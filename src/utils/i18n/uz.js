@@ -4,5 +4,14 @@ const uz = {
     total_need: "Jami so‘ralgan summa",
     total_must_pay: "To‘lanishi kerak summa",
   },
+  table: {
+    fio: "F.I.SH",
+    tel: "TEL.RAQAMI",
+    sponsor_cost: "HOMIY SUMMASI",
+    spent_cost: "SARFLANGAN SUMMASI",
+    date: "SANA",
+    status: "HOLATI",
+    options: "AMALLAR",
+  },
 };
 export default uz;

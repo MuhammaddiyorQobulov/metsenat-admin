@@ -9,6 +9,7 @@ const dashboardStore = useDashboardStore();
 onMounted(() => {
   dashboardStore.getDashboardDatas();
 });
+
 </script>
 
 <template>
@@ -23,7 +24,7 @@ onMounted(() => {
           <copura-icon />
         </nav>
         <div>
-          <p class="title">{{ t(`dashboard.total_paid`) }}</p>
+          <p class="title">{{ t(`dashboard.${cost}`) }}</p>
           <p class="amount">{{ dashboardStore.datas[cost] }}</p>
         </div>
       </div>
