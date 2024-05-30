@@ -5,19 +5,22 @@ import { useMainStore } from "./main";
 export const useSponsorStore = defineStore("sponsorStore", {
   state: () => ({
     datas: null,
+    count: null,
     error: null,
   }),
 
   actions: {
-    async getSponsors() {
+    async getSponsors({ page, size }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
+      console.log(page, size);
       try {
         const res = await api.get("/sponsor-list/", {
-          page: 1,
-          page_size: 10,
+          page: page,
+          page_size: size,
         });
         this.datas = await res.data.results;
+        this.count = await res.data.count;
       } catch (err) {
         this.error = err.message;
       } finally {

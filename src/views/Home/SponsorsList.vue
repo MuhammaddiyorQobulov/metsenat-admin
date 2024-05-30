@@ -1,4 +1,5 @@
 <script setup>
+import PaginationComponent from "../../components/PaginationComponent.vue";
 import { useSponsorStore } from "@/store/sponsors";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
@@ -7,15 +8,19 @@ import { EyeIcon } from "@/assets/icons/eye";
 const moment = require("moment");
 const sponsorStore = useSponsorStore();
 const { t } = useI18n();
-
 onMounted(() => {
-  sponsorStore.getSponsors();
+  sponsorStore.getSponsors({ page: 1, size: 10 });
 });
+
+const HandlePaginate = (page, size) => {
+  // sponsorStore.getSponsors({ page: page, size: size });
+  console.log(page, size);
+};
 </script>
 
 <template>
   <div class="container" v-if="sponsorStore.datas">
-    <table  class="table" @click="() => console.log(sponsorStore.datas)">
+    <table class="table" @click="() => console.log(sponsorStore.datas)">
       <thead>
         <tr class="header">
           <th class="title">#</th>
@@ -47,13 +52,14 @@ onMounted(() => {
         </tr>
       </tbody>
     </table>
+    <PaginationComponent :onChange="HandlePaginate" />
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../styles/variables";
 .table {
-  width: 100%;  
+  width: 100%;
   border-collapse: collapse;
 
   tbody {
