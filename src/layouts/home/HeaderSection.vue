@@ -1,7 +1,7 @@
 <script setup>
 import SearchComponent from "../../components/SearchComponent.vue";
 import { FilterIcon } from "../../assets/icons/filter";
-import FilterModal from "./FilterModal.vue";
+import FilterModal from "../../components/ModalComponent.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -34,12 +34,7 @@ const tabs = [
   <div class="header container">
     <table class="tabs">
       <thead>
-        <router-link
-          v-for="tab in tabs"
-          :to="tab.link"
-          :key="tab.id"
-          @click="() => console.log(route)"
-        >
+        <router-link v-for="tab in tabs" :to="tab.link" :key="tab.id">
           <th :class="{ active: route.name === tab.name }">{{ tab.title }}</th>
         </router-link>
       </thead>
@@ -51,7 +46,9 @@ const tabs = [
         <p>Filter</p>
       </div>
     </div>
-    <filter-modal v-if="isModal" @close-modal="() => (isModal = false)" />
+    <filter-modal v-if="isModal" @close-modal="() => (isModal = false)">
+      <h1>Filter</h1>
+    </filter-modal>
   </div>
 </template>
 

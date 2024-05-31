@@ -12,6 +12,10 @@ const uz = {
     date: "SANA",
     status: "HOLATI",
     options: "AMALLAR",
+    shows: {
+      from:"tadan",
+      showing:"ko‘rsatilmoqda",
+    },
   },
 };
 export default uz;

@@ -14,23 +14,21 @@ const emits = defineEmits(["closeModal"]);
   <div class="filter-modal" @click="emits('closeModal')">
     <div class="overlay">
       <div class="modal" @click.stop>
-        <p>Filter</p>
-        <p>Filter</p>
-        <p>Filter</p>
-        <p>Filter</p>
+        <slot />
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "../styles/variables";
 .filter-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
   .overlay {
     position: absolute;
     top: 0;

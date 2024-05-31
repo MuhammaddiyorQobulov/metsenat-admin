@@ -1,29 +1,32 @@
 <template>
   <div>
     <a-pagination
-      show-size-changer
-      v-model:current="current1"
+      v-model:current="current"
       v-model:pageSize="size"
-      :total="835"
-      @change="onChange"
+      :page-size="size"
+      :page="current"
+      :total="sponsorStore.count.amount"
+      show-size-changer
+      @change="onShowSizeChange"
     />
     <br />
   </div>
 </template>
 <script setup>
+import { useSponsorStore } from "@/store/sponsors";
 import { ref } from "vue";
 import { defineProps, defineEmits } from "vue";
+const sponsorStore = useSponsorStore();
 
-const emits = defineEmits(["onChange"]);
+const emits = defineEmits(["change"]);
 const props = defineProps({
-  page: { type: Number, default: 3 },
-  pageSize: { type: Number, default: 25 },
+  page: { type: Number, default: 1 },
+  pageSize: { type: Number, default: 15 },
 });
 
 const size = ref(props.pageSize);
-const current1 = ref(props.page);
-
-const onChange = (current, pageSize) => {
-    emits("onChange", current, pageSize);
+const current = ref(props.page);
+const onShowSizeChange = (current, pageSize) => {
+  emits("change", current, pageSize);
 };
 </script>

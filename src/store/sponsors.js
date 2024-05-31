@@ -5,7 +5,11 @@ import { useMainStore } from "./main";
 export const useSponsorStore = defineStore("sponsorStore", {
   state: () => ({
     datas: null,
-    count: null,
+    count: {
+      page: null,
+      size: null,
+      amount: null,
+    },
     error: null,
   }),
 
@@ -20,7 +24,12 @@ export const useSponsorStore = defineStore("sponsorStore", {
           page_size: size,
         });
         this.datas = await res.data.results;
-        this.count = await res.data.count;
+        this.count = {
+          ...this.count,
+          page,
+          size,
+          amount: await res.data.count,
+        };
       } catch (err) {
         this.error = err.message;
       } finally {

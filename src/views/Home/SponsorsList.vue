@@ -9,23 +9,22 @@ const moment = require("moment");
 const sponsorStore = useSponsorStore();
 const { t } = useI18n();
 onMounted(() => {
-  sponsorStore.getSponsors({ page: 1, size: 10 });
+  sponsorStore.getSponsors({ page: 1, size: 15 });
 });
 
 const HandlePaginate = (page, size) => {
-  // sponsorStore.getSponsors({ page: page, size: size });
-  console.log(page, size);
+  sponsorStore.getSponsors({ page, size });
 };
 </script>
 
 <template>
   <div class="container" v-if="sponsorStore.datas">
-    <table class="table" @click="() => console.log(sponsorStore.datas)">
-      <thead>
+    <table class="table">
+      <thead class="thead">
         <tr class="header">
           <th class="title">#</th>
           <th class="title">{{ t("table.fio") }}</th>
-          <th class="title">{{ t("table.tel") }}</th>
+          <th class="title">{{ t("table.tel") }} </th>
           <th class="title">{{ t("table.sponsor_cost") }}</th>
           <th class="title">{{ t("table.spent_cost") }}</th>
           <th class="title">{{ t("table.date") }}</th>
@@ -33,8 +32,8 @@ const HandlePaginate = (page, size) => {
           <th class="title">{{ t("table.options") }}</th>
         </tr>
       </thead>
-      <tbody>
-        <tr class="trow" v-for="data in sponsorStore.datas" :key="data">
+      <tbody class="tbody">
+        <tr class="row" v-for="data in sponsorStore.datas" :key="data">
           <td>{{ data.id }}</td>
           <td>{{ data.full_name }}</td>
           <td>{{ data.phone }}</td>
@@ -52,7 +51,14 @@ const HandlePaginate = (page, size) => {
         </tr>
       </tbody>
     </table>
-    <PaginationComponent :onChange="HandlePaginate" />
+    <div class="pagination">
+      <p>
+        {{ sponsorStore.count.amount }} {{ t("table.shows.from") }}
+        {{ sponsorStore.count.page + "-" + sponsorStore.count.size }}
+        {{ t("table.shows.showing") }}
+      </p>
+      <PaginationComponent @change="HandlePaginate" />
+    </div>
   </div>
 </template>
 
@@ -61,22 +67,34 @@ const HandlePaginate = (page, size) => {
 .table {
   width: 100%;
   border-collapse: collapse;
-
-  tbody {
-    display: table-row-group;
+  .tbody {
     margin-top: 20px;
-    tr {
+    .row {
       background: $white;
       border-radius: 10px;
       border: 1px solid $border;
-      margin-top: 30px;
+      margin-top: 50px;
       padding: 20px;
+
+      .Yangi {
+        color: $blue;
+      }
+      .Moderatsiyada {
+        color: $tag-orrange;
+      }
+      .Bekor {
+        color: $grey;
+      }
+      .Tasdiqlangan {
+        color: $green-tag;
+      }
     }
   }
-
-  th,
-  td {
-    text-align: start;
-  }
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
 }
 </style>
