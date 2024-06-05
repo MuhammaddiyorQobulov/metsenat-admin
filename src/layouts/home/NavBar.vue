@@ -18,7 +18,7 @@ const HandleLogout = () => {
     <div class="logo">
       <logo-icon />
       <div class="name">
-        <h1 class="title">METSENAT</h1>
+        <h1 class="main-title">METSENAT</h1>
         <nav class="tag">PRO</nav>
       </div>
     </div>
@@ -52,7 +52,7 @@ const HandleLogout = () => {
     align-items: center;
     gap: 10px;
 
-    .title {
+    .main-title {
       font-size: 25px;
       font-weight: 900;
       line-height: 27px;

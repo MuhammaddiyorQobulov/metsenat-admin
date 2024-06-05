@@ -1,7 +1,8 @@
 <script setup>
 import SearchComponent from "../../components/SearchComponent.vue";
 import { FilterIcon } from "../../assets/icons/filter";
-import FilterModal from "../../components/ModalComponent.vue";
+import ModalComponent from "../../components/ModalComponent.vue";
+import FilterForm from "./FilterForm.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -46,9 +47,9 @@ const tabs = [
         <p>Filter</p>
       </div>
     </div>
-    <filter-modal v-if="isModal" @close-modal="() => (isModal = false)">
-      <h1>Filter</h1>
-    </filter-modal>
+    <modal-component v-if="isModal" @close-modal="() => (isModal = false)">
+      <filter-form />
+    </modal-component>
   </div>
 </template>
 
@@ -68,7 +69,7 @@ const tabs = [
         text-decoration: none;
       }
       th {
-        border: 2px solid $border;
+        border: 2px solid $light-blue;
         border-radius: 5px;
         padding: 10px 30px;
         color: rgba($blue, 0.6);

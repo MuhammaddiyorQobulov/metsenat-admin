@@ -30,7 +30,7 @@ const handleSubmit = async () => {
   <div class="container">
     <div class="logo">
       <LogoIcon />
-      <h1 class="title">METSENAT</h1>
+      <h1 class="main-title">METSENAT</h1>
       <nav class="tag">CLUB</nav>
     </div>
     <form @submit.prevent="handleSubmit" class="form">
@@ -38,12 +38,10 @@ const handleSubmit = async () => {
       <div class="input">
         <label for="login">LOGIN</label>
         <input type="text" v-model="login" id="login" />
-        <p>metsenatadmin</p>
       </div>
       <div class="input">
         <label for="parol">PAROL</label>
         <input type="password" v-model="parol" id="parol" />
-        <p>uF9aH1vZ3bV2kN2y</p>
       </div>
       <div class="check-bot"></div>
       <div class="btn">

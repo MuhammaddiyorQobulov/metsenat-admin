@@ -11,9 +11,6 @@
 
 body {
   background-color: $primary;
-  h1 {
-    color: $main-title;
-  }
 }
 
 .container {
@@ -21,5 +18,8 @@ body {
   padding-right: 120px !important;
   .title {
     color: $title;
+  }
+  .main-title{
+    color: $main-title;
   }
 }

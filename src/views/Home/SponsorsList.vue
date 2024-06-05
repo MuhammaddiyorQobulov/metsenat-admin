@@ -72,7 +72,7 @@ const HandlePaginate = (page, size) => {
     .row {
       background: $white;
       border-radius: 10px;
-      border: 1px solid $border;
+      border: 1px solid $light-blue;
       margin-top: 50px;
       padding: 20px;
 
