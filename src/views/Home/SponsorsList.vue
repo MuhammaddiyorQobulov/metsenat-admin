@@ -24,7 +24,7 @@ const HandlePaginate = (page, size) => {
         <tr class="header">
           <th class="title">#</th>
           <th class="title">{{ t("table.fio") }}</th>
-          <th class="title">{{ t("table.tel") }} </th>
+          <th class="title">{{ t("table.tel") }}</th>
           <th class="title">{{ t("table.sponsor_cost") }}</th>
           <th class="title">{{ t("table.spent_cost") }}</th>
           <th class="title">{{ t("table.date") }}</th>
@@ -67,8 +67,16 @@ const HandlePaginate = (page, size) => {
 .table {
   width: 100%;
   border-collapse: collapse;
+  th {
+    text-align: left;
+    padding-left: 1rem;
+  }
   .tbody {
+    tr td {
+      padding: 1rem;
+    }
     margin-top: 20px;
+
     .row {
       background: $white;
       border-radius: 10px;

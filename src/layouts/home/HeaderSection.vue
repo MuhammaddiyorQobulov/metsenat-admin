@@ -48,7 +48,7 @@ const tabs = [
       </div>
     </div>
     <modal-component v-if="isModal" @close-modal="() => (isModal = false)">
-      <filter-form />
+      <filter-form @close-modal="() => (isModal = false)" />
     </modal-component>
   </div>
 </template>

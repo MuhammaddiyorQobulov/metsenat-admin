@@ -1,20 +1,30 @@
+<script setup>
+import { ref, defineEmits } from "vue";
+import MainButton from "../../components/MainButton.vue";
+const emits = defineEmits(["closeModal"]);
+const status = ref("barchasi");
+const handleSubmit = () => {
+  console.log(status.value);
+  emits("closeModal");
+};
+</script>
+
 <template>
-  <form class="form">
+  <form @submit.prevent="handleSubmit" class="form">
     <h1 class="main-title">Filter</h1>
     <hr />
 
     <label for="sponsor-status" class="main-title">ARIZA HOLATI</label>
-    <select id="sponsor-status" class="selects">
+    <select id="sponsor-status" v-model="status" class="selects">
       <option value="barchasi">Barchasi</option>
       <option value="yangi">Yangi</option>
       <option value="moderatsiyada">Moderatsiyada</option>
       <option value="tasdiqlangan">Tasdiqlangan</option>
-      <option value="bekor">Bekor qilingan</option>
+      <option value="bekor qilingan">Bekor qilingan</option>
     </select>
+    <main-button type="submit" @onClick="handleSubmit" title="Submit" />
   </form>
 </template>
-
-<script setup></script>
 
 <style scoped lang="scss">
 @import "../../styles/variables";

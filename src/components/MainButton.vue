@@ -6,12 +6,18 @@ defineProps({
     type: String,
     required: true,
   },
+  type: {
+    type: String,
+    default: "text",
+  },
 });
 const emits = defineEmits(["onClick"]);
 </script>
 
 <template>
-  <button @click="emits('onClick')" class="btn-main">{{ title }}</button>
+  <button :type="type" @click="emits('onClick')" class="btn-main">
+    {{ title }} <slot />
+  </button>
 </template>
 
 <style lang="scss" scoped>
