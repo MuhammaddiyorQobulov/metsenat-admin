@@ -19,7 +19,7 @@ const HandlePaginate = (page, size) => {
 
 <template>
   <div class="container" v-if="sponsorStore.datas">
-    <table class="table">
+    <table>
       <thead class="thead">
         <tr class="header">
           <th class="title">#</th>
@@ -64,7 +64,7 @@ const HandlePaginate = (page, size) => {
 
 <style scoped lang="scss">
 @import "../../styles/variables";
-.table {
+table {
   width: 100%;
   border-collapse: collapse;
   th {
@@ -81,7 +81,6 @@ const HandlePaginate = (page, size) => {
       background: $white;
       border-radius: 10px;
       border: 1px solid $light-blue;
-      margin-top: 50px;
       padding: 20px;
 
       .Yangi {
