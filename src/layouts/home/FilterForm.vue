@@ -22,33 +22,37 @@ const onChange = (_, dateString) => {
 <template>
   <form @submit.prevent="handleSubmit" class="form">
     <h1 class="main-title">Filter</h1>
-    <label for="sponsor-status" class="main-title bold-500">ARIZA HOLATI</label>
-    <select id="sponsor-status" v-model="status" class="selects">
-      <option value="barchasi">Barchasi</option>
-      <option value="yangi">Yangi</option>
-      <option value="moderatsiyada">Moderatsiyada</option>
-      <option value="tasdiqlangan">Tasdiqlangan</option>
-      <option value="bekor qilingan">Bekor qilingan</option>
-    </select>
+    <div class="inputs">
+      <label for="sponsor-status" class="main-title bold-500"
+        >ARIZA HOLATI</label
+      >
+      <select id="sponsor-status" v-model="status" class="selects">
+        <option value="barchasi">Barchasi</option>
+        <option value="yangi">Yangi</option>
+        <option value="moderatsiyada">Moderatsiyada</option>
+        <option value="tasdiqlangan">Tasdiqlangan</option>
+        <option value="bekor qilingan">Bekor qilingan</option>
+      </select>
 
-    <h3 class="main-title bold-500">Homiylik summasi</h3>
-    <div class="tags">
-      <summa-tag
-        v-for="tag in tags"
-        :key="tag"
-        :count="tag"
-        :active="active"
-        @change="handleActive"
-      />
-    </div>
+      <h3 class="main-title bold-500">Homiylik summasi</h3>
+      <div class="tags">
+        <summa-tag
+          v-for="tag in tags"
+          :key="tag"
+          :count="tag"
+          :active="active"
+          @change="handleActive"
+        />
+      </div>
 
-    <h3 class="main-title bold-500">Sana</h3>
-    <div class="date">
-      <a-range-picker
-        style="width: 50%; height: 40px"
-        format="YYYY-MM-DD"
-        @change="onChange"
-      />
+      <h3 class="main-title bold-500">Sana</h3>
+      <div class="date">
+        <a-range-picker
+          class="date-picker"
+          format="YYYY-MM-DD"
+          @change="onChange"
+        />
+      </div>
     </div>
     <main-button type="submit" @onClick="handleSubmit" title="Submit" />
   </form>
@@ -57,11 +61,15 @@ const onChange = (_, dateString) => {
 <style scoped lang="scss">
 @import "../../styles/variables";
 .form {
-  width: 586px;
-  height: 586px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: max-content;
+  height: max-content;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 0;
+  }
   .selects {
     width: 100%;
     padding: 10px;
@@ -71,6 +79,13 @@ const onChange = (_, dateString) => {
     border-radius: 4px;
     cursor: pointer;
   }
+  .date-picker {
+    width: 50%;
+    height: 40px;
+    background: rgba($light-blue, 0.2);
+    border: 1px solid $light-blue;
+  }
+
   .tags {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

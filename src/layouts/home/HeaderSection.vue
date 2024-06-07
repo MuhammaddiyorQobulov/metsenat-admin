@@ -7,7 +7,7 @@ import { ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const isModal = ref(true);
+const isModal = ref(false);
 
 const tabs = [
   {
