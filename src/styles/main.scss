@@ -19,7 +19,21 @@ body {
   .title {
     color: $title;
   }
-  .main-title{
+  .main-title {
     color: $main-title;
   }
+}
+
+.text-blue {
+  color: blue;
+}
+.small {
+  font-size: 12px;
+}
+.text-muted {
+  color: $title;
+}
+
+.bold-500 {
+  font-weight: 500;
 }

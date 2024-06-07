@@ -1,12 +1,6 @@
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { defineEmits } from "vue";
 
-defineProps({
-  isModal: {
-    type: Boolean,
-    required: true,
-  },
-});
 const emits = defineEmits(["closeModal"]);
 </script>
 

@@ -7,7 +7,7 @@ import { ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
-const isModal = ref(false);
+const isModal = ref(true);
 
 const tabs = [
   {
@@ -42,7 +42,7 @@ const tabs = [
     </table>
     <div class="search-filter">
       <search-component />
-      <div class="filter" @click="isModal = true">
+      <div class="filter" @click="() => (isModal = true)">
         <filter-icon />
         <p>Filter</p>
       </div>
