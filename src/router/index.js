@@ -3,8 +3,9 @@ import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import DashboardTab from "@/views/Home/DashboardTab.vue";
-import SponsorsList from "@/views/Home/sponsor/SponsorsList.vue";
+import SponsorsList from "@/views/Home/Sponsor/SponsorsList.vue";
 import StudentsList from "@/views/Home/StudentsList.vue";
+import SponsorDetail from "@/views/Home/Sponsor/SponsorDetail.vue";
 
 const routes = [
   {
@@ -26,9 +27,15 @@ const routes = [
       {
         path: "students",
         name: "students",
-        component: () => StudentsList,
+        component: StudentsList,
       },
     ],
+  },
+  {
+    path: "/sponsor-detail/:id",
+    name: "sponsor-detail",
+    component: SponsorDetail,
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -39,6 +46,7 @@ const routes = [
     path: "/:pathMatch(.*)*",
     name: "notFound",
     component: NotFoundView,
+    meta: { requiresAuth: true },
   },
 ];
 
