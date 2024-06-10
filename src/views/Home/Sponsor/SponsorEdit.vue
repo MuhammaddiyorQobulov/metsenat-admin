@@ -56,9 +56,16 @@ const handleSubmit = () => {
     >
     <input type="text" v-model="data.full_name" id="full_name" class="input" />
 
-    <label class="label" for="phone">Telefon raqam</label>
-    <input type="text" v-model="data.phone" id="phone" class="input" />
-
+    <label class="label" for="phone">Telefon raqam </label>
+    <input
+      type="tel"
+      class="input"
+      id="phone"
+      v-model="data.phone"
+      pattern="^[+]?[8-9]{3}?[0-9]{9}"
+      required
+      placeholder="+998YYXXXXXXX"
+    />
     <label class="label" for="sum">Homiylik summasi</label>
     <select id="sum" v-model="data.sum" class="input">
       <option defaultValue :value="1000000">1000000</option>
@@ -116,7 +123,9 @@ const handleSubmit = () => {
   .label {
     margin-top: 1rem;
   }
-
+  .example {
+    font-size: 10px;
+  }
   .active {
     background: $blue;
     color: white !important;
