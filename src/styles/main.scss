@@ -24,16 +24,23 @@ body {
   }
 }
 
+.row {
+  display: flex;
+}
+
 .text-blue {
   color: blue;
 }
 .small {
   font-size: 12px;
 }
+.f-medium {
+  font-size: 20px;
+}
 .text-muted {
   color: $title;
 }
 
-.bold-500 {
+.bold-5 {
   font-weight: 500;
 }

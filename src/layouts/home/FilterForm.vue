@@ -30,9 +30,7 @@ const handleDefaultFilter = () => {
   <form @submit.prevent="handleSubmit" class="form">
     <h1 class="main-title">Filter</h1>
     <div class="inputs">
-      <label for="sponsor-status" class="main-title bold-500"
-        >ARIZA HOLATI</label
-      >
+      <label for="sponsor-status" class="main-title bold-5">ARIZA HOLATI</label>
       <select id="sponsor-status" v-model="status" class="selects">
         <option value="barchasi">Barchasi</option>
         <option value="yangi">Yangi</option>
@@ -41,7 +39,7 @@ const handleDefaultFilter = () => {
         <option value="bekor qilingan">Bekor qilingan</option>
       </select>
 
-      <h3 class="main-title bold-500">Homiylik summasi</h3>
+      <h3 class="main-title bold-5">Homiylik summasi</h3>
       <div class="tags">
         <summa-tag
           v-for="tag in tags"
@@ -52,7 +50,7 @@ const handleDefaultFilter = () => {
         />
       </div>
 
-      <h3 class="main-title bold-500">Sana</h3>
+      <h3 class="main-title bold-5">Sana</h3>
       <div class="date">
         <a-range-picker
           class="date-picker"
@@ -92,7 +90,6 @@ const handleDefaultFilter = () => {
   width: max-content;
   height: max-content;
 
-
   .inputs {
     display: flex;
     flex-direction: column;
@@ -125,6 +122,5 @@ const handleDefaultFilter = () => {
     display: flex;
     gap: 1rem;
   }
-  
 }
 </style>

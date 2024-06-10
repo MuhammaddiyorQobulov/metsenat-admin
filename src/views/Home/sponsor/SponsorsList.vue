@@ -22,18 +22,18 @@ const HandlePaginate = (page, size) => {
     <table>
       <thead class="thead">
         <tr class="header">
-          <th class="title">#</th>
-          <th class="title">{{ t("table.fio") }}</th>
-          <th class="title">{{ t("table.tel") }}</th>
-          <th class="title">{{ t("table.sponsor_cost") }}</th>
-          <th class="title">{{ t("table.spent_cost") }}</th>
-          <th class="title">{{ t("table.date") }}</th>
-          <th class="title">{{ t("table.status") }}</th>
-          <th class="title">{{ t("table.options") }}</th>
+          <th class="title bold-5">#</th>
+          <th class="title bold-5">{{ t("table.fio") }}</th>
+          <th class="title bold-5">{{ t("table.tel") }}</th>
+          <th class="title bold-5">{{ t("table.sponsor_cost") }}</th>
+          <th class="title bold-5">{{ t("table.spent_cost") }}</th>
+          <th class="title bold-5">{{ t("table.date") }}</th>
+          <th class="title bold-5">{{ t("table.status") }}</th>
+          <th class="title bold-5">{{ t("table.options") }}</th>
         </tr>
       </thead>
       <tbody class="tbody">
-        <tr class="row" v-for="data in sponsorStore.datas" :key="data">
+        <tr class="trow" v-for="data in sponsorStore.datas" :key="data">
           <td>{{ data.id }}</td>
           <td>{{ data.full_name }}</td>
           <td>{{ data.phone }}</td>
@@ -45,7 +45,9 @@ const HandlePaginate = (page, size) => {
           </td>
           <td>
             <div class="options">
-              <eye-icon />
+              <router-link :to="`/sponsor-detail/${data.id}`">
+                <eye-icon />
+              </router-link>
             </div>
           </td>
         </tr>
@@ -67,9 +69,15 @@ const HandlePaginate = (page, size) => {
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 3rem;
   th {
     text-align: left;
     padding-left: 1rem;
+  }
+  .thead {
+    tr th {
+      padding: 0.5rem 1rem;
+    }
   }
   .tbody {
     tr td {
@@ -77,12 +85,12 @@ table {
     }
     margin-top: 20px;
 
-    .row {
+    .trow {
       background: $white;
       border-radius: 10px;
       border: 1px solid $light-blue;
       padding: 20px;
-
+      transition: 0.2s;
       .Yangi {
         color: $blue;
       }
@@ -94,6 +102,13 @@ table {
       }
       .Tasdiqlangan {
         color: $green-tag;
+      }
+      .options {
+        cursor: pointer;
+      }
+
+      &:hover {
+        background: $light-blue;
       }
     }
   }

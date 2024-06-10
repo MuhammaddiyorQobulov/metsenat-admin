@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from "./layouts/home/NavBar.vue";
 import LoaderComponent from "./components/LoaderComponent.vue";
 import { useMainStore } from "./store/main";
 const mainStore = useMainStore();
@@ -6,6 +7,7 @@ const mainStore = useMainStore();
 
 <template>
   <div class="views">
+    <nav-bar />
     <loader-component :visible="mainStore.isFetching" />
     <router-view />
   </div>

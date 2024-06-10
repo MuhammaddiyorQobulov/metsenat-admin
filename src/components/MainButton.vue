@@ -8,7 +8,7 @@ defineProps({
   },
   type: {
     type: String,
-    default: "text",
+    default: "button",
   },
   style: {
     type: String,
@@ -40,11 +40,16 @@ const emits = defineEmits(["onClick"]);
   font-weight: 500;
   line-height: 21px;
   text-align: center;
-  padding: 10px;
+  padding: 10px 20px;
   width: 100%;
   display: flex;
   gap: 1rem;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+
+  &:active {
+    transform: scale(0.98);
+  }
 }
 </style>
