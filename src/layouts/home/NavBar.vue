@@ -37,7 +37,7 @@ const HandleLogout = () => {
 </template>
 
 <style lang="scss" scoped>
-@import "../../styles/variables";
+@import "@/styles/variables";
 .nav-bar {
   display: flex;
   align-items: center;

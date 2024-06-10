@@ -30,7 +30,7 @@ const emits = defineEmits(["change"]);
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "@/styles/variables";
 .sum-tag {
   width: 100%;
   padding: 1rem 0;

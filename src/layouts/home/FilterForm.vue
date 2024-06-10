@@ -1,13 +1,11 @@
 <script setup>
 import { ref, reactive, defineEmits } from "vue";
-import MainButton from "../../components/MainButton.vue";
-import SummaTag from "../components/SummaTag.vue";
+import MainButton from "@/components/MainButton.vue";
+import SummaTag from "@/layouts/components/SummaTag.vue";
+import { EyeIcon } from "@/assets/icons/eye";
 
 const emits = defineEmits(["closeModal"]);
 const status = ref("barchasi");
-const handleSubmit = () => {
-  emits("closeModal");
-};
 const active = ref(0);
 const dateRange = reactive([]);
 const tags = [0, 1000000, 5000000, 7000000, 10000000, 30000000, 50000000];
@@ -16,6 +14,15 @@ const handleActive = (value) => {
 };
 const onChange = (_, dateString) => {
   dateRange.value = dateString;
+};
+const handleSubmit = () => {
+  emits("closeModal");
+};
+const handleDefaultFilter = () => {
+  status.value = "barchasi";
+  active.value = 0;
+  emits("closeModal");
+  dateRange.value = [];
 };
 </script>
 
@@ -51,18 +58,40 @@ const onChange = (_, dateString) => {
           class="date-picker"
           format="YYYY-MM-DD"
           @change="onChange"
+          :defaultValue="dateRange"
         />
       </div>
     </div>
-    <main-button type="submit" @onClick="handleSubmit" title="Submit" />
+    <div class="actions">
+      <main-button
+        type="submit"
+        style="
+          background-color: transparent;
+          color: #2e5bff;
+          border: 1px solid #2e5bff;
+        "
+        @onClick="handleDefaultFilter"
+        title="Tozalash"
+      >
+        <eye-icon
+      /></main-button>
+      <main-button
+        type="submit"
+        @onClick="handleSubmit"
+        title="Natijalarni ko'rish"
+      >
+        <eye-icon
+      /></main-button>
+    </div>
   </form>
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "@/styles/variables";
 .form {
   width: max-content;
   height: max-content;
+
 
   .inputs {
     display: flex;
@@ -92,5 +121,10 @@ const onChange = (_, dateString) => {
     gap: 1rem;
     justify-content: center;
   }
+  .actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
 }
 </style>

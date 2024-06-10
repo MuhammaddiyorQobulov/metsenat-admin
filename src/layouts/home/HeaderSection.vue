@@ -1,7 +1,7 @@
 <script setup>
-import SearchComponent from "../../components/SearchComponent.vue";
-import { FilterIcon } from "../../assets/icons/filter";
-import ModalComponent from "../../components/ModalComponent.vue";
+import SearchComponent from "@/components/SearchComponent.vue";
+import { FilterIcon } from "@/assets/icons/filter";
+import ModalComponent from "@/components/ModalComponent.vue";
 import FilterForm from "./FilterForm.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
@@ -54,7 +54,7 @@ const tabs = [
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "@/styles/variables";
 .header {
   display: flex;
   justify-content: space-between;

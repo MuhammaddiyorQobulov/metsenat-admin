@@ -1,5 +1,5 @@
 <script setup>
-import PaginationComponent from "../../components/PaginationComponent.vue";
+import PaginationComponent from "@/components/PaginationComponent.vue";
 import { useSponsorStore } from "@/store/sponsors";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
@@ -63,7 +63,7 @@ const HandlePaginate = (page, size) => {
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "@/styles/variables";
 table {
   width: 100%;
   border-collapse: collapse;

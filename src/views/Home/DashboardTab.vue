@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
-import { CopuraIcon } from "../../assets/icons/copura";
-import { useDashboardStore } from "../../store/dashboard";
+import { CopuraIcon } from "@/assets/icons/copura";
+import { useDashboardStore } from "@/store/dashboard";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n();
@@ -33,7 +33,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
-@import "../../styles/variables";
+@import "@/styles/variables";
 .costs {
   width: 100%;
   display: flex;

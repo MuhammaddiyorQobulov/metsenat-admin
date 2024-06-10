@@ -1,6 +1,6 @@
 <script setup>
-import NavBar from "../layouts/home/NavBar.vue";
-import HeaderSection from "../layouts/home/HeaderSection.vue";
+import NavBar from "@/layouts/home/NavBar.vue";
+import HeaderSection from "@/layouts/home/HeaderSection.vue";
 </script>
 <template>
   <nav-bar />

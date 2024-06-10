@@ -10,18 +10,27 @@ defineProps({
     type: String,
     default: "text",
   },
+  style: {
+    type: String,
+  },
 });
 const emits = defineEmits(["onClick"]);
 </script>
 
 <template>
-  <button :type="type" @click="emits('onClick')" class="btn-main">
-    {{ title }} <slot />
+  <button
+    :style="style"
+    :type="type"
+    @click="emits('onClick')"
+    class="btn-main"
+  >
+    <p>{{ title }}</p>
+    <slot />
   </button>
 </template>
 
 <style lang="scss" scoped>
-@import "../styles/variables";
+@import "@/styles/variables";
 .btn-main {
   border: none;
   background-color: $blue;
@@ -33,5 +42,9 @@ const emits = defineEmits(["onClick"]);
   text-align: center;
   padding: 10px;
   width: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
 }
 </style>

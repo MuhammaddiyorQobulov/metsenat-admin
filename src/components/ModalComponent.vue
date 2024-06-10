@@ -1,4 +1,5 @@
 <script setup>
+import { CloseIcon } from "@/assets/icons/close";
 import { defineEmits } from "vue";
 
 const emits = defineEmits(["closeModal"]);
@@ -9,13 +10,16 @@ const emits = defineEmits(["closeModal"]);
     <div class="overlay">
       <div class="modal" @click.stop>
         <slot />
+        <div @click="emits('closeModal')" class="close-icon">
+          <close-icon />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "../styles/variables";
+@import "@/styles/variables";
 .filter-modal {
   position: fixed;
   top: 0;
@@ -35,12 +39,19 @@ const emits = defineEmits(["closeModal"]);
     align-items: center;
   }
   .modal {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 20px;
     background: $white;
     border-radius: 10px;
     padding: 20px;
+  }
+  .close-icon {
+    position: absolute;
+    top: 2.5%;
+    right: 2.5%;
+    cursor: pointer;
   }
 }
 </style>

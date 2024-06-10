@@ -23,7 +23,7 @@ const model = ref("");
 </template>
 
 <style scoped lang="scss">
-@import "../styles/variables";
+@import "@/styles/variables";
 
 form {
   display: flex;
