@@ -1,10 +1,12 @@
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { useSponsorStore } from "@/store/sponsors";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { ChevronLeftIcon } from "@/assets/icons/chevron-left";
-import MainButton from "@/components/MainButton.vue";
 import { EditIcon } from "@/assets/icons/edit";
+import ModalComponent from "@/components/ModalComponent.vue";
+import MainButton from "@/components/MainButton.vue";
+import SponsorEdit from "@/views/Home/Sponsor/SponsorEdit";
 
 const sponsorStore = useSponsorStore();
 const route = useRoute();
@@ -13,6 +15,8 @@ const router = useRouter();
 onMounted(() => {
   sponsorStore.getSponsorDetail(route.params.id);
 });
+
+const isModal = ref(false);
 </script>
 
 <template>
@@ -35,6 +39,7 @@ onMounted(() => {
             border: 1px dashed #2e5bff;
           "
           title="Tahrirlash"
+          @onClick="() => (isModal = true)"
         >
           <edit-icon />
         </main-button>
@@ -57,6 +62,9 @@ onMounted(() => {
         </div>
       </div>
     </div>
+    <modal-component v-if="isModal" @closeModal="() => (isModal = false)">
+      <sponsor-edit @closeModal="() => (isModal = false)" />
+    </modal-component>
   </div>
 </template>
 

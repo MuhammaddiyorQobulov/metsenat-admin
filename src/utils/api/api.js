@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://metsenatclub.xn--h28h.uz/api/v1",
+  baseURL: "https://club.metsenat.uz/api/v1",
   headers: {
     "Content-Type": "application/json",
   },

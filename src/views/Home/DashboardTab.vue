@@ -40,6 +40,7 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 30px;
+  margin-top: 2rem;
   .cost {
     width: 33%;
     display: flex;

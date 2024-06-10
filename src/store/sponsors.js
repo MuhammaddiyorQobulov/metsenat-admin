@@ -50,5 +50,19 @@ export const useSponsorStore = defineStore("sponsorStore", {
         mainStore.toggleIsFetching(false);
       }
     },
+    async EditSponsor(id, data) {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      console.log("aasdas");
+      try {
+        const res = await api.put(`/sponsor-update/${id}/`, data);
+        this.detail = await res.data;
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+    },
   },
 });

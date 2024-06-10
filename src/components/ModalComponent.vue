@@ -45,7 +45,7 @@ const emits = defineEmits(["closeModal"]);
     gap: 20px;
     background: $white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 2rem;
   }
   .close-icon {
     position: absolute;
