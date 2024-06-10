@@ -28,7 +28,7 @@ onMounted(() => {
       <div class="about">
         <p class="bold-5 f-medium">Homiy haqida</p>
         <main-button
-          style="
+          styles="
             background: #edf1fd;
             width: max-content;
             color: #2e5bff;
@@ -122,7 +122,7 @@ onMounted(() => {
     .row {
       display: grid;
       grid-template-columns: repeat(2, 50%);
-      .col{
+      .col {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;

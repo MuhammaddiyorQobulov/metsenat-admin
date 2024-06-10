@@ -10,8 +10,9 @@ defineProps({
     type: String,
     default: "button",
   },
-  style: {
+  styles: {
     type: String,
+    required: false,
   },
 });
 const emits = defineEmits(["onClick"]);
@@ -19,7 +20,7 @@ const emits = defineEmits(["onClick"]);
 
 <template>
   <button
-    :style="style"
+    :style="styles"
     :type="type"
     @click="emits('onClick')"
     class="btn-main"

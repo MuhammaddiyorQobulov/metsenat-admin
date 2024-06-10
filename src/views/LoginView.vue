@@ -45,7 +45,7 @@ const handleSubmit = async () => {
       </div>
       <div class="check-bot"></div>
       <div class="btn">
-        <main-button title="Kirish" />
+        <main-button title="Kirish" type="submit" />
         <p v-if="error" class="error">{{ error }}</p>
       </div>
     </form>
