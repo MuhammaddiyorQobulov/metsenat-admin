@@ -1,18 +1,19 @@
 <script setup>
+import CustomTable from "@/components/CustomTable.vue";
 import PaginationComponent from "@/components/PaginationComponent.vue";
-import { useSponsorStore } from "@/store/sponsors";
+import { useStudentsStore } from "@/store/students";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
-import CustomTable from "@/components/CustomTable";
 
-const sponsorStore = useSponsorStore();
+const studentsStore = useStudentsStore();
 const { t } = useI18n();
 onMounted(() => {
-  sponsorStore.getSponsors({ page: 1, size: 15 });
+  studentsStore.getStudents({ page: 1, size: 10 });
+  studentsStore.getInstitutes();
 });
 
 const HandlePaginate = (page, size) => {
-  sponsorStore.getSponsors({ page, size });
+  studentsStore.getStudents({ page, size });
 };
 
 const TableHead = [
@@ -27,59 +28,52 @@ const TableHead = [
     key: "2",
   },
   {
-    title: "TEL.RAQAMI",
-    dataIndex: "phone",
+    title: "TALABALIK TURI",
+    dataIndex: "type",
     key: "3",
   },
   {
-    title: "HOMIYLIK SUMMASI",
-    dataIndex: "sum",
+    title: "OTM",
+    dataIndex: "institute",
     key: "4",
   },
   {
-    title: "SARFLANGAN SUMMA",
-    dataIndex: "spent",
+    title: "AJRATILINGAN SUMMA",
+    dataIndex: "given",
     key: "5",
   },
   {
-    title: "SANA",
+    title: "KONTRAKT MIQDORI",
     dataIndex: "created_at",
     key: "6",
-  },
-  {
-    title: "HOLATI",
-    dataIndex: "get_status_display",
-    key: "7",
   },
   {
     title: "AMALLAR",
     dataIndex: "actions",
     key: "8",
-    link: "sponsor-detail",
+    link: "student-detail",
   },
 ];
 </script>
 
 <template>
-  <div class="container" v-if="sponsorStore.datas">
-    <custom-table :body="sponsorStore.datas" :head="TableHead" />
+  <div class="container" v-if="studentsStore.students">
+    <custom-table :body="studentsStore.students" :head="TableHead" />
     <div class="pagination">
       <p>
-        {{ sponsorStore.count.amount }} {{ t("table.shows.from") }}
-        {{ sponsorStore.count.page + "-" + sponsorStore.count.size }}
+        {{ studentsStore.count.amount }} {{ t("table.shows.from") }}
+        {{ studentsStore.count.page + "-" + studentsStore.count.size }}
         {{ t("table.shows.showing") }}
       </p>
       <PaginationComponent
         @change="HandlePaginate"
-        :count="sponsorStore.count.amount"
+        :count="studentsStore.count.amount"
       />
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "@/styles/variables";
-
 .pagination {
   display: flex;
   justify-content: space-between;

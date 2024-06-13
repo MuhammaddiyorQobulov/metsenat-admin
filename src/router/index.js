@@ -4,7 +4,7 @@ import LoginView from "@/views/LoginView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
 import DashboardTab from "@/views/Home/DashboardTab.vue";
 import SponsorsList from "@/views/Home/Sponsor/SponsorsList.vue";
-import StudentsList from "@/views/Home/StudentsList.vue";
+import StudentsList from "@/views/Home/students/StudentsList.vue";
 import SponsorDetail from "@/views/Home/Sponsor/SponsorDetail.vue";
 
 const routes = [

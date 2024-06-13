@@ -1,3 +1,21 @@
+<script setup>
+import { EyeIcon } from "@/assets/icons/eye";
+import { useStudentsStore } from "@/store/students";
+import { defineProps } from "vue";
+const moment = require("moment");
+const props = defineProps({
+  head: Array,
+  body: Array,
+});
+const studentsStore = useStudentsStore();
+
+const getSingleInstitute = (id) => {
+  return studentsStore.institutes
+    ? studentsStore.institutes.find((item) => item.id === id)
+    : { id: 0, name: "-" };
+};
+</script>
+
 <template>
   <table>
     <thead class="thead">
@@ -16,6 +34,9 @@
           <div v-if="th.dataIndex == 'created_at'">
             {{ moment(tr[th.dataIndex]).format("YYYY-MM-DD") }}
           </div>
+          <div v-else-if="th.dataIndex == 'institute'">
+            {{ getSingleInstitute(tr[th.dataIndex].id).name }}
+          </div>
           <div
             v-else
             :class="th.dataIndex == 'get_status_display' && tr[th.dataIndex]"
@@ -28,22 +49,17 @@
   </table>
 </template>
 
-<script setup>
-import { EyeIcon } from "@/assets/icons/eye";
-import { defineProps } from "vue";
-const moment = require("moment");
-const props = defineProps({
-  head: Array,
-  body: Array,
-});
-</script>
-
 <style lang="scss" scoped>
 @import "@/styles/variables";
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 3rem;
+  .header {
+    th {
+      font-size: 11px;
+    }
+  }
   th {
     text-align: left;
     padding-left: 1rem;

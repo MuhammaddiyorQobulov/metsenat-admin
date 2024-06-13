@@ -5,7 +5,7 @@
       v-model:pageSize="size"
       :page-size="size"
       :page="current"
-      :total="sponsorStore.count.amount"
+      :total="count"
       show-size-changer
       @change="onShowSizeChange"
     />
@@ -13,15 +13,14 @@
   </div>
 </template>
 <script setup>
-import { useSponsorStore } from "@/store/sponsors";
 import { ref } from "vue";
 import { defineProps, defineEmits } from "vue";
-const sponsorStore = useSponsorStore();
 
 const emits = defineEmits(["change"]);
 const props = defineProps({
   page: { type: Number, default: 1 },
-  pageSize: { type: Number, default: 15 },
+  pageSize: { type: Number, default: 10 },
+  count: { type: Number, default: 1 },
 });
 
 const size = ref(props.pageSize);

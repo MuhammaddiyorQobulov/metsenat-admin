@@ -2,28 +2,27 @@ import { defineStore, getActivePinia } from "pinia";
 import api from "@/utils/api/api";
 import { useMainStore } from "./main";
 
-export const useSponsorStore = defineStore("sponsorStore", {
+export const useStudentsStore = defineStore("studentsStore", {
   state: () => ({
-    datas: null,
+    students: null,
     count: {
       page: null,
       size: null,
       amount: null,
     },
-    detail: null,
+    institutes: null,
     error: null,
   }),
-
   actions: {
-    async getSponsors({ page, size }) {
+    async getStudents({ page, size }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get("/sponsor-list/", {
+        const res = await api.get("/student-list/", {
           page: page,
           page_size: size,
         });
-        this.datas = await res.data.results;
+        this.students = res.data.results;
         this.count = {
           ...this.count,
           page,
@@ -37,24 +36,12 @@ export const useSponsorStore = defineStore("sponsorStore", {
         mainStore.toggleIsFetching(false);
       }
     },
-    async getSponsorDetail(id) {
+    async getInstitutes() {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get(`/sponsor-detail/${id}/`);
-        this.detail = await res.data;
-        this.error = null;
-      } catch (err) {
-        this.error = err.message;
-      } finally {
-        mainStore.toggleIsFetching(false);
-      }
-    },
-    async EditSponsor(id, data) {
-      const mainStore = useMainStore(getActivePinia());
-      mainStore.toggleIsFetching(true);
-      try {
-        this.detail = await api.put(`/sponsor-update/${id}/`, data);
+        const res = await api.get("/institute-list/");
+        this.institutes = res.data;
         this.error = null;
       } catch (err) {
         this.error = err.message;
