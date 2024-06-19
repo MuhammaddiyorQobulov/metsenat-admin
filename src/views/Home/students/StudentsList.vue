@@ -19,7 +19,7 @@ const HandlePaginate = (page, size) => {
 const TableHead = [
   {
     title: "#",
-    dataIndex: "id",
+    dataIndex: "index",
     key: "1",
   },
   {
@@ -44,7 +44,7 @@ const TableHead = [
   },
   {
     title: "KONTRAKT MIQDORI",
-    dataIndex: "created_at",
+    dataIndex: "contract",
     key: "6",
   },
   {

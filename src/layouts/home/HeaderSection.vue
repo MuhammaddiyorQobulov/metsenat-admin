@@ -2,7 +2,8 @@
 import SearchComponent from "@/components/SearchComponent.vue";
 import { FilterIcon } from "@/assets/icons/filter";
 import ModalComponent from "@/components/ModalComponent.vue";
-import FilterForm from "./FilterForm.vue";
+import SponsorsFilter from "./SponsorsFilter.vue";
+import StudentsFilter from "./StudentsFilter.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 
@@ -48,7 +49,8 @@ const tabs = [
       </div>
     </div>
     <modal-component v-if="isModal" @close-modal="() => (isModal = false)">
-      <filter-form @close-modal="() => (isModal = false)" />
+      <sponsors-filter v-if="route.name === 'sponsors'" @close-modal="() => (isModal = false)" />
+      <students-filter v-if="route.name === 'students'" @close-modal="() => (isModal = false)" />
     </modal-component>
   </div>
 </template>

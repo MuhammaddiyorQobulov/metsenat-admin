@@ -26,8 +26,9 @@ const getSingleInstitute = (id) => {
       </tr>
     </thead>
     <tbody class="tbody">
-      <tr class="trow" v-for="tr in props.body" :key="tr.id">
+      <tr class="trow" v-for="(tr, idx) in props.body" :key="tr.id">
         <td v-for="th in head" :key="th.key">
+          <div v-if="th.dataIndex == 'index'">{{ idx + 1 }}</div>
           <router-link v-if="th.link" :to="'/' + th.link + '/' + tr.id">
             <EyeIcon />
           </router-link>
@@ -36,6 +37,9 @@ const getSingleInstitute = (id) => {
           </div>
           <div v-else-if="th.dataIndex == 'institute'">
             {{ getSingleInstitute(tr[th.dataIndex].id).name }}
+          </div>
+          <div v-else-if="th.dataIndex == 'type'">
+            {{ tr[th.dataIndex] == 1 ? "Bakalavr" : "Magistratura" }}
           </div>
           <div
             v-else
@@ -72,6 +76,7 @@ table {
   .tbody {
     tr td {
       padding: 1rem;
+      max-width: 250px;
     }
 
     .trow {

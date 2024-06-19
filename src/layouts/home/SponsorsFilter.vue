@@ -3,6 +3,7 @@ import { ref, reactive, defineEmits } from "vue";
 import MainButton from "@/components/MainButton.vue";
 import SummaTag from "@/layouts/components/SummaTag.vue";
 import { EyeIcon } from "@/assets/icons/eye";
+import { ClearIcon } from "@/assets/icons/clear";
 
 const emits = defineEmits(["closeModal"]);
 const status = ref("barchasi");
@@ -71,7 +72,7 @@ const handleDefaultFilter = () => {
         @onClick="handleDefaultFilter"
         title="Tozalash"
       >
-        <eye-icon
+        <clear-icon
       /></main-button>
       <main-button
         type="submit"
