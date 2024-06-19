@@ -23,7 +23,7 @@ const isModal = ref(false);
   <div v-if="sponsorStore.detail" class="sponsor-detail">
     <div class="head container">
       <chevron-left-icon @click="router.go(-1)" style="cursor: pointer" />
-      <h1 class="bold-5">{{ sponsorStore.detail.full_name }}</h1>
+      <h2 class="bold-5">{{ sponsorStore.detail.full_name }}</h2>
       <nav :class="sponsorStore.detail.get_status_display" class="status">
         {{ sponsorStore.detail.get_status_display }}
       </nav>
@@ -80,7 +80,7 @@ const isModal = ref(false);
   .head {
     width: calc(100% - 240px);
     background: $secondary;
-    padding: 30px 0;
+    padding: 20px 0;
     display: flex;
     gap: 1rem;
     align-items: center;

@@ -42,7 +42,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get(`/sponsor-detail/${id}/`);
-        this.detail = await res.data;
+        this.detail = res.data;
         this.error = null;
       } catch (err) {
         this.error = err.message;

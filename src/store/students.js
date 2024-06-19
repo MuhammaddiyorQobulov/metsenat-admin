@@ -1,6 +1,6 @@
 import { defineStore, getActivePinia } from "pinia";
-import api from "@/utils/api/api";
 import { useMainStore } from "./main";
+import api from "@/utils/api/api";
 
 export const useStudentsStore = defineStore("studentsStore", {
   state: () => ({
@@ -42,7 +42,23 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        this.singleStudent = await api.post("/student-create/", data);
+        const res = await api.post("/student-create/", data);
+        this.singleStudent = res.data;
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+      return this.singleStudent;
+    },
+
+    async getSingleStudent(id) {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      try {
+        const res = await api.get(`/student-detail/${id}`);
+        this.singleStudent = res.data;
         this.error = null;
       } catch (err) {
         this.error = err.message;

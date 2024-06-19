@@ -10,9 +10,10 @@ const router = useRouter();
 const err = ref(null);
 const studentsStore = useStudentsStore();
 const handleSubmit = async () => {
-  await studentsStore.createStudent(student);
+  const data = await studentsStore.createStudent(student);
   if (!studentsStore.error) {
-    router.push("/students");
+    console.log(data.id);
+    router.push("/student-detail/" + data.id);
   } else {
     err.value = studentsStore.error;
   }
@@ -34,7 +35,7 @@ const student = reactive({
   <div class="create">
     <div class="head container">
       <chevron-left-icon @click="router.go(-1)" style="cursor: pointer" />
-      <h1 class="bold-5">Talaba Qo'shish</h1>
+      <h2 class="bold-5">Talaba Qo'shish</h2>
     </div>
     <div class="body">
       <form @submit.prevent="handleSubmit">
@@ -119,7 +120,7 @@ const student = reactive({
   .head {
     width: calc(100% - 240px);
     background: $secondary;
-    padding: 30px 0;
+    padding: 20px 0;
     display: flex;
     gap: 1rem;
     align-items: center;

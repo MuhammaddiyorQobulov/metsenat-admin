@@ -15,7 +15,7 @@ const HandleLogout = () => {
 
 <template>
   <div class="nav-bar container">
-    <div class="logo">
+    <div class="logo" @click="() => router.push('/')">
       <logo-icon />
       <div class="name">
         <h1 class="main-title">METSENAT</h1>
@@ -51,6 +51,7 @@ const HandleLogout = () => {
     display: flex;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 
     .main-title {
       font-size: 25px;
@@ -60,7 +61,7 @@ const HandleLogout = () => {
 
     .tag {
       border-radius: 7px;
-      color: $green-tag ;
+      color: $green-tag;
     }
   }
 

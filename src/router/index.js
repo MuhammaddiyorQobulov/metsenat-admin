@@ -7,6 +7,7 @@ import SponsorsList from "@/views/Home/Sponsor/SponsorsList.vue";
 import StudentsList from "@/views/Home/students/StudentsList.vue";
 import SponsorDetail from "@/views/Home/Sponsor/SponsorDetail.vue";
 import AddStudent from "@/views/Home/students/AddStudent.vue";
+import StudentDetail from "@/views/Home/students/StudentDetail.vue";
 
 const routes = [
   {
@@ -41,6 +42,12 @@ const routes = [
     path: "/sponsor-detail/:id",
     name: "sponsor-detail",
     component: SponsorDetail,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/student-detail/:id",
+    name: "student-detail",
+    component: StudentDetail,
     meta: { requiresAuth: true },
   },
   {
