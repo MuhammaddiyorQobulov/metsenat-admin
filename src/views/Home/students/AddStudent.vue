@@ -3,14 +3,19 @@ import { ChevronLeftIcon } from "@/assets/icons/chevron-left";
 import { useRouter } from "vue-router";
 import MainButton from "@/components/MainButton.vue";
 import { useStudentsStore } from "@/store/students";
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { PlusIcon } from "@/assets/icons/plus";
 
 const router = useRouter();
+const err = ref(null);
 const studentsStore = useStudentsStore();
-const handleSubmit = () => {
-  //   router.push("/students");
-  console.log(student);
+const handleSubmit = async () => {
+  await studentsStore.createStudent(student);
+  if (!studentsStore.error) {
+    router.push("/students");
+  } else {
+    err.value = studentsStore.error;
+  }
 };
 
 onMounted(() => {
@@ -97,6 +102,7 @@ const student = reactive({
           <plus-icon />
         </main-button>
       </form>
+      <div v-if="err" class="err">Malumot Toldirishda xatolik</div>
     </div>
   </div>
 </template>
@@ -118,7 +124,9 @@ const student = reactive({
     gap: 1rem;
     align-items: center;
   }
-
+  .err {
+    color: red;
+  }
   .body {
     width: 45rem;
     padding: 2rem;

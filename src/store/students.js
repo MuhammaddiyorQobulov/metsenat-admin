@@ -10,6 +10,7 @@ export const useStudentsStore = defineStore("studentsStore", {
       size: null,
       amount: null,
     },
+    singleStudent: null,
     institutes: null,
     error: null,
   }),
@@ -29,6 +30,19 @@ export const useStudentsStore = defineStore("studentsStore", {
           size,
           amount: await res.data.count,
         };
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+    },
+
+    async createStudent(data) {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      try {
+        this.singleStudent = await api.post("/student-create/", data);
         this.error = null;
       } catch (err) {
         this.error = err.message;

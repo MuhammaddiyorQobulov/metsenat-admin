@@ -24,7 +24,7 @@ const handleSubmit = async () => {
   router.push("/");
   error.value = null;
 };
-</script>
+</script> 
 
 <template>
   <div class="container">
