@@ -51,7 +51,7 @@ const isModal = ref(false);
         <p class="bold-5 f-medium">{{ sponsorStore.detail.full_name }}</p>
       </div>
 
-      <div class="info row">
+      <div class="row">
         <div class="col">
           <p class="bold-5 small text-muted">TELEFON RAQAM</p>
           <p class="bold-5 f-medium">{{ sponsorStore.detail.phone }}</p>
@@ -84,7 +84,9 @@ const isModal = ref(false);
     display: flex;
     gap: 1rem;
     align-items: center;
-
+    position: sticky;
+    top: 0;
+    left: 0;
     .status {
       padding: 0.4rem 0.7rem;
       border-radius: 6px;

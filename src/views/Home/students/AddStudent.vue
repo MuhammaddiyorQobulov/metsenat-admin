@@ -124,6 +124,9 @@ const student = reactive({
     display: flex;
     gap: 1rem;
     align-items: center;
+    position: sticky;
+    top: 0;
+    left: 0;
   }
   .err {
     color: red;
