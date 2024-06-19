@@ -6,6 +6,7 @@ import DashboardTab from "@/views/Home/DashboardTab.vue";
 import SponsorsList from "@/views/Home/Sponsor/SponsorsList.vue";
 import StudentsList from "@/views/Home/students/StudentsList.vue";
 import SponsorDetail from "@/views/Home/Sponsor/SponsorDetail.vue";
+import AddStudent from "@/views/Home/students/AddStudent.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         component: StudentsList,
       },
     ],
+  },
+  {
+    path: "/students-add",
+    name: "students-add",
+    component: AddStudent,
   },
   {
     path: "/sponsor-detail/:id",

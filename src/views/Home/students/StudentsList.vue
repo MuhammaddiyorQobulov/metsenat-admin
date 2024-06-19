@@ -1,11 +1,15 @@
 <script setup>
 import CustomTable from "@/components/CustomTable.vue";
 import PaginationComponent from "@/components/PaginationComponent.vue";
+import MainButton from "@/components/MainButton.vue";
+import { PlusIcon } from "@/assets/icons/plus";
 import { useStudentsStore } from "@/store/students";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRouter } from "vue-router";
 
 const studentsStore = useStudentsStore();
+const router = useRouter();
 const { t } = useI18n();
 onMounted(() => {
   studentsStore.getStudents({ page: 1, size: 10 });
@@ -58,7 +62,15 @@ const TableHead = [
 
 <template>
   <div class="container" v-if="studentsStore.students">
+    <main-button
+      title="Talaba Qo'shish"
+      style="width: max-content; margin-top: 1rem; margin-left: auto"
+      @click="() => router.push('/students-add')"
+    >
+      <plus-icon
+    /></main-button>
     <custom-table :body="studentsStore.students" :head="TableHead" />
+
     <div class="pagination">
       <p>
         {{ studentsStore.count.amount }} {{ t("table.shows.from") }}

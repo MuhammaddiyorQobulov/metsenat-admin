@@ -58,7 +58,7 @@ const getSingleInstitute = (id) => {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 3rem;
+  margin-top: 1rem;
   .header {
     th {
       font-size: 11px;
