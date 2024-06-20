@@ -45,6 +45,7 @@ onMounted(() => {
           v-for="item in sponsorsStore.datas"
           :key="item.id"
           :value="item.id"
+          class="option"
         >
           {{ item.full_name }}
         </option>
@@ -54,7 +55,13 @@ onMounted(() => {
       <label class="label bold-5 main-title" for="summa"
         >Ajratilingan summa</label
       >
-      <input type="number" placeholder="summa" id="summa" v-model="data.summa" class="selects" />
+      <input
+        type="number"
+        placeholder="summa"
+        id="summa"
+        v-model="data.summa"
+        class="selects"
+      />
     </div>
     <main-button
       title="Qo'shish"

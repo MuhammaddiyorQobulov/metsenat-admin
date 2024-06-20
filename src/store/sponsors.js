@@ -55,13 +55,13 @@ export const useSponsorStore = defineStore("sponsorStore", {
       mainStore.toggleIsFetching(true);
       try {
         this.detail = await api.put(`/sponsor-update/${id}/`, data);
+        this.getSponsorDetail(id);
         this.error = null;
       } catch (err) {
         this.error = err.message;
       } finally {
         mainStore.toggleIsFetching(false);
       }
-    }
-
+    },
   },
 });
