@@ -45,11 +45,13 @@ const TableHead = [
     title: "AJRATILINGAN SUMMA",
     dataIndex: "given",
     key: "5",
+    isUzs: true,
   },
   {
     title: "KONTRAKT MIQDORI",
     dataIndex: "contract",
     key: "6",
+    isUzs: true,
   },
   {
     title: "AMALLAR",

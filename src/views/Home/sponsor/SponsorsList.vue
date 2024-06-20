@@ -35,11 +35,13 @@ const TableHead = [
     title: "HOMIYLIK SUMMASI",
     dataIndex: "sum",
     key: "4",
+    isUzs: true,
   },
   {
     title: "SARFLANGAN SUMMA",
     dataIndex: "spent",
     key: "5",
+    isUzs: true,
   },
   {
     title: "SANA",

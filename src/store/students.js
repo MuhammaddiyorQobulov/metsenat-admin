@@ -12,6 +12,7 @@ export const useStudentsStore = defineStore("studentsStore", {
     },
     singleStudent: null,
     institutes: null,
+    sponsors: null,
     error: null,
   }),
   actions: {
@@ -72,7 +73,9 @@ export const useStudentsStore = defineStore("studentsStore", {
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get(`/student-detail/${id}`);
+        const sponsors = await api.get(`/student-sponsor/${id}/`);
         this.singleStudent = res.data;
+        this.sponsors = sponsors.data.sponsors;
         this.error = null;
       } catch (err) {
         this.error = err.message;

@@ -25,7 +25,7 @@ const getSingleInstitute = (id) => {
         </th>
       </tr>
     </thead>
-    <tbody class="tbody">
+    <tbody class="tbody" v-if="props.body && props.body.length">
       <tr class="trow" v-for="(tr, idx) in props.body" :key="tr.id">
         <td v-for="th in head" :key="th.key">
           <div v-if="th.dataIndex == 'index'">{{ idx + 1 }}</div>
@@ -41,15 +41,25 @@ const getSingleInstitute = (id) => {
           <div v-else-if="th.dataIndex == 'type'">
             {{ tr[th.dataIndex] == 1 ? "Bakalavr" : "Magistratura" }}
           </div>
+          <div v-else-if="th.dataIndex == 'sponsor'">
+            {{ tr[th.dataIndex].full_name }}
+          </div>
+          <div v-else-if="th.dataIndex == 'action'" class="action">
+            <component :is="th.render.icon" @click="th.render.onClick" />
+          </div>
           <div
             v-else
             :class="th.dataIndex == 'get_status_display' && tr[th.dataIndex]"
           >
-            {{ tr[th.dataIndex] }}
+            <p>{{ tr[th.dataIndex] }}</p>
+            <p v-if="th.isUzs" class="uzs bold-5">UZS</p>
           </div>
         </td>
       </tr>
     </tbody>
+    <div v-else class="no-data">
+      Hozirda ma'lumotlar mavjud emas
+    </div>
   </table>
 </template>
 
@@ -77,6 +87,16 @@ table {
     tr td {
       padding: 1rem;
       max-width: 250px;
+      div p {
+        display: inline;
+      }
+      .action {
+        color: $blue;
+        cursor: pointer;
+      }
+      .uzs {
+        color: $grey;
+      }
     }
 
     .trow {
@@ -105,6 +125,9 @@ table {
         background: $light-blue;
       }
     }
+  }
+  .no-data {
+    padding: 1rem 0;
   }
 }
 </style>

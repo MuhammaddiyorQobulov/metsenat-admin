@@ -2,12 +2,14 @@
 import { useRoute, useRouter } from "vue-router";
 import { ChevronLeftIcon } from "@/assets/icons/chevron-left";
 import { EditIcon } from "@/assets/icons/edit";
+import { PlusIcon } from "@/assets/icons/plus";
 import { onMounted, ref } from "vue";
 import { useStudentsStore } from "@/store/students";
 import MainButton from "@/components/MainButton.vue";
 import ModalComponent from "@/components/ModalComponent.vue";
 import AddSponsorSumma from "./AddSponsorSumma.vue";
 import EditStudent from "./EditStudent.vue";
+import CustomTable from "@/components/CustomTable.vue";
 
 const studentsStore = useStudentsStore();
 const route = useRoute();
@@ -18,6 +20,34 @@ const isEditStudent = ref(false);
 onMounted(() => {
   studentsStore.getSingleStudent(route.params.id);
 });
+
+const TableHead = [
+  {
+    title: "#",
+    dataIndex: "index",
+    key: "1",
+  },
+  {
+    title: "F.I.SH",
+    dataIndex: "sponsor",
+    key: "2",
+  },
+  {
+    title: "AJRATILINGAN SUMMA",
+    dataIndex: "summa",
+    key: "3",
+    isUzs: true,
+  },
+  {
+    title: "AMALLAR",
+    dataIndex: "action",
+    key: "4",
+    render: {
+      onClick: () => console.log("amallar"),
+      icon: EditIcon,
+    },
+  },
+];
 </script>
 <template>
   <div class="student" v-if="studentsStore.singleStudent">
@@ -27,17 +57,6 @@ onMounted(() => {
         style="cursor: pointer"
       />
       <h2 class="bold-5">{{ studentsStore.singleStudent.full_name }}</h2>
-      <main-button
-        title="Homiy qo'shish"
-        style="
-          border: 1px dashed #2e5bff;
-          background: #edf1fd;
-          color: #2e5bff;
-          width: max-content;
-          margin-left: auto;
-        "
-        @click="() => (isAddSponsor = true)"
-      />
     </div>
 
     <div class="detail">
@@ -105,6 +124,28 @@ onMounted(() => {
       </div>
     </div>
 
+    <div class="detail">
+      <div class="about">
+        <p class="bold-5 f-medium">Talaba homiylari</p>
+        <main-button
+          styles="
+            background: #edf1fd;
+            width: max-content;
+            color: #2e5bff;
+            border: 1px dashed #2e5bff;
+          "
+          title="Homiy qo'shish"
+          @onClick="() => (isAddSponsor = true)"
+        >
+          <plus-icon />
+        </main-button>
+      </div>
+
+      <div>
+        <custom-table :body="studentsStore.sponsors" :head="TableHead" />
+      </div>
+    </div>
+
     <modal-component
       v-if="isAddSponsor"
       @closeModal="() => (isAddSponsor = false)"
@@ -125,10 +166,10 @@ onMounted(() => {
 .student {
   background: url("@/assets/images/image.png") no-repeat fixed bottom;
   background-size: 50%;
-  height: calc(100vh - 5.4rem);
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 4rem !important;
   .head {
     width: calc(100% - 240px);
     background: $secondary;
@@ -154,6 +195,8 @@ onMounted(() => {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 2px solid $grey-white;
+      padding-bottom: 1rem;
     }
     .user {
       display: flex;
