@@ -7,6 +7,7 @@ import { useStudentsStore } from "@/store/students";
 import MainButton from "@/components/MainButton.vue";
 import ModalComponent from "@/components/ModalComponent.vue";
 import AddSponsorSumma from "./AddSponsorSumma.vue";
+import EditStudent from "./EditStudent.vue";
 
 const studentsStore = useStudentsStore();
 const route = useRoute();
@@ -109,6 +110,12 @@ onMounted(() => {
       @closeModal="() => (isAddSponsor = false)"
     >
       <add-sponsor-summa @closeModal="() => (isAddSponsor = false)" />
+    </modal-component>
+    <modal-component
+      v-if="isEditStudent"
+      @closeModal="() => (isEditStudent = false)"
+    >
+      <edit-student @closeModal="() => (isEditStudent = false)" />
     </modal-component>
   </div>
 </template>

@@ -46,9 +46,6 @@ const HandleLogout = () => {
   padding-top: 12px;
   padding-bottom: 12px;
   background: $white;
-  position: sticky;
-  top: 0;
-  left: 0;
 
   .logo {
     display: flex;

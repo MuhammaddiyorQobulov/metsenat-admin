@@ -61,6 +61,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
       } finally {
         mainStore.toggleIsFetching(false);
       }
-    },
+    }
+
   },
 });

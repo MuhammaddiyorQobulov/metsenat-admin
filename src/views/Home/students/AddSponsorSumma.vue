@@ -54,7 +54,7 @@ onMounted(() => {
       <label class="label bold-5 main-title" for="summa"
         >Ajratilingan summa</label
       >
-      <input type="number" id="summa" v-model="data.summa" class="selects" />
+      <input type="number" placeholder="summa" id="summa" v-model="data.summa" class="selects" />
     </div>
     <main-button
       title="Qo'shish"

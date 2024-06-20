@@ -53,6 +53,20 @@ export const useStudentsStore = defineStore("studentsStore", {
       return this.singleStudent;
     },
 
+    async EditStudent(id, data) {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      try {
+        api.put(`/student-update/${id}/`, data);
+        this.getSingleStudent(id);
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+    },
+
     async getSingleStudent(id) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
