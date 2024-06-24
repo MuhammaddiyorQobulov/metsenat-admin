@@ -58,9 +58,9 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        api.put(`/student-update/${id}/`, data);
-        this.getSingleStudent(id);
+        await api.put(`/student-update/${id}/`, data);
         this.error = null;
+        location.reload()
       } catch (err) {
         this.error = err.message;
       } finally {

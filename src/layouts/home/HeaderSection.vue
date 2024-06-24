@@ -41,7 +41,7 @@ const tabs = [
         </router-link>
       </thead>
     </table>
-    <div class="search-filter">
+    <div class="search-filter" v-if="route.name !== 'dashboard'">
       <search-component />
       <div class="filter" @click="() => (isModal = true)">
         <filter-icon />

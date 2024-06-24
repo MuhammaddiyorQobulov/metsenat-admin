@@ -41,6 +41,7 @@ onMounted(() => {
     <div class="inputs">
       <label for="sponsor" class="main-title bold-5">Homiy</label>
       <select id="sponsor" v-model="data.sponsor" class="selects">
+        <option disabled :value="null">Homiyni Tanlang</option>
         <option
           v-for="item in sponsorsStore.datas"
           :key="item.id"
