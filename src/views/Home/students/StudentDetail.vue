@@ -10,12 +10,15 @@ import ModalComponent from "@/components/ModalComponent.vue";
 import AddSponsorSumma from "./AddSponsorSumma.vue";
 import EditStudent from "./EditStudent.vue";
 import CustomTable from "@/components/CustomTable.vue";
+import EditSponsorSumma from "@/views/Home/students/EditSponsorSumma.vue";
 
 const studentsStore = useStudentsStore();
 const route = useRoute();
 const router = useRouter();
 const isAddSponsor = ref(false);
 const isEditStudent = ref(false);
+const isEditSponsor = ref(false);
+const editSponsor = ref(null);
 
 onMounted(() => {
   studentsStore.getSingleStudent(route.params.id);
@@ -43,7 +46,10 @@ const TableHead = [
     dataIndex: "action",
     key: "4",
     render: {
-      onClick: () => console.log("amallar"),
+      onClick: (tr) => {
+        editSponsor.value = tr;
+        isEditSponsor.value = true;
+      },
       icon: EditIcon,
     },
   },
@@ -157,6 +163,15 @@ const TableHead = [
       @closeModal="() => (isEditStudent = false)"
     >
       <edit-student @closeModal="() => (isEditStudent = false)" />
+    </modal-component>
+    <modal-component
+      v-if="isEditSponsor"
+      @closeModal="() => (isEditSponsor = false)"
+    >
+      <edit-sponsor-summa
+        :sponsor="editSponsor"
+        @closeModal="() => (isEditSponsor = false)"
+      />
     </modal-component>
   </div>
 </template>

@@ -45,7 +45,7 @@ const getSingleInstitute = (id) => {
             {{ tr[th.dataIndex].full_name }}
           </div>
           <div v-else-if="th.dataIndex == 'action'" class="action">
-            <component :is="th.render.icon" @click="th.render.onClick" />
+            <component :is="th.render.icon" @click="th.render.onClick(tr)" />
           </div>
           <div
             v-else
