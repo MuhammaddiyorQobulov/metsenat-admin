@@ -10,7 +10,7 @@ import ModalComponent from "@/components/ModalComponent.vue";
 import AddSponsorSumma from "./AddSponsorSumma.vue";
 import EditStudent from "./EditStudent.vue";
 import CustomTable from "@/components/CustomTable.vue";
-import EditSponsorSumma from "@/views/Home/students/EditSponsorSumma.vue";
+import EditSponsorSumma from "@/views/students/EditSponsorSumma.vue";
 
 const studentsStore = useStudentsStore();
 const route = useRoute();

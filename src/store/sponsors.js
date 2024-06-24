@@ -12,6 +12,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
     },
     detail: null,
     error: null,
+    tarifs: null,
   }),
 
   actions: {
@@ -56,6 +57,20 @@ export const useSponsorStore = defineStore("sponsorStore", {
       try {
         this.detail = await api.put(`/sponsor-update/${id}/`, data);
         this.getSponsorDetail(id);
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+    },
+    async getTarifs() {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      try {
+        const res = await api.get("/tariff-list/");
+        this.tarifs = res.data;
+        console.log(res.data);
         this.error = null;
       } catch (err) {
         this.error = err.message;

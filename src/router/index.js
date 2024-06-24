@@ -2,12 +2,13 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/LoginView.vue";
 import NotFoundView from "@/views/NotFoundView.vue";
-import DashboardTab from "@/views/Home/DashboardTab.vue";
-import SponsorsList from "@/views/Home/Sponsor/SponsorsList.vue";
-import StudentsList from "@/views/Home/students/StudentsList.vue";
-import SponsorDetail from "@/views/Home/Sponsor/SponsorDetail.vue";
-import AddStudent from "@/views/Home/students/AddStudent.vue";
-import StudentDetail from "@/views/Home/students/StudentDetail.vue";
+import DashboardTab from "@/views/DashboardTab.vue";
+import SponsorsList from "@/views/Sponsor/SponsorsList.vue";
+import StudentsList from "@/views/students/StudentsList.vue";
+import SponsorDetail from "@/views/Sponsor/SponsorDetail.vue";
+import AddStudent from "@/views/students/AddStudent.vue";
+import StudentDetail from "@/views/students/StudentDetail.vue";
+import SponsorAdd from "@/views/Sponsor/SponsorAdd.vue";
 
 const routes = [
   {
@@ -48,6 +49,12 @@ const routes = [
     path: "/student-detail/:id",
     name: "student-detail",
     component: StudentDetail,
+    meta: { requiresAuth: true },
+  },
+  {
+    path: "/sponsor-add",
+    name: "sponsor-add",
+    component: SponsorAdd,
     meta: { requiresAuth: true },
   },
   {

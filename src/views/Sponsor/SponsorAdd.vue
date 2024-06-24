@@ -1,0 +1,147 @@
+<script setup>
+import { reactive, defineEmits, onMounted } from "vue";
+import MainButton from "@/components/MainButton.vue";
+import SummaTag from "@/layouts/components/SummaTag.vue";
+import { EyeIcon } from "@/assets/icons/eye";
+import { useSponsorStore } from "@/store/sponsors";
+
+const sponsorStore = useSponsorStore();
+const emits = defineEmits(["closeModal"]);
+const handleActive = (value) => {
+  data.sum = value;
+};
+
+onMounted(() => {
+  sponsorStore.getTarifs();
+});
+const handleSubmit = () => {
+  emits("closeModal");
+};
+const data = reactive({
+  full_name: null,
+  phone: null,
+  sum: 0,
+  is_legal: false,
+  firm: null,
+  payment_type: ["44"],
+});
+</script>
+
+<template>
+  <div class="wrapper">
+    <form @submit.prevent="handleSubmit" class="form">
+      <h1 class="main-title">Homiy sifatida ariza topshirish</h1>
+
+      <div class="personality">
+        <p
+          @click="data.is_legal = true"
+          :class="data.is_legal && 'active'"
+          class="entity is-legal"
+        >
+          YURIDIK SHAXS
+        </p>
+        <p
+          @click="data.is_legal = false"
+          :class="!data.is_legal && 'active'"
+          class="natural is-legal"
+        >
+          JISMONIY SHAXS
+        </p>
+      </div>
+      <div class="inputs">
+        <label for="sponsor-status" class="main-title bold-5">F.I.SH</label>
+        <input
+          type="text"
+          id="sponsor-status"
+          v-model="data.full_name"
+          class="input"
+        />
+
+        <label for="tel" class="main-title bold-5">TELEFON RAQAMINGIZ</label>
+        <input id="tel" type="tel" v-model="data.phone" class="input" />
+
+        <h3 class="main-title bold-5">Homiylik summasi</h3>
+        <div class="tags">
+          <summa-tag
+            v-for="tag in sponsorStore.tarifs"
+            :key="tag.id"
+            :count="tag.summa"
+            :active="data.sum"
+            @change="handleActive"
+          />
+          <summa-tag :count="0" :active="data.sum" @change="handleActive" />
+          <input id="sum" type="number" v-model="data.sum" class="input" />
+        </div>
+      </div>
+      <div class="actions">
+        <main-button
+          type="submit"
+          @onClick="handleSubmit"
+          title="Natijalarni ko'rish"
+        >
+          <eye-icon
+        /></main-button>
+      </div>
+    </form>
+  </div>
+</template>
+
+<style scoped lang="scss">
+@import "@/styles/variables";
+.wrapper {
+  width: 100%;
+  background-color: $secondary;
+  .form {
+    min-width: 35%;
+    max-width: 500px;
+    height: 100%;
+    padding: 2rem 120px;
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+    .selects {
+      width: 100%;
+      padding: 10px;
+      background: rgba($light-blue, 0.2);
+      border: 1px solid $light-blue;
+      padding-right: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .personality {
+      width: 100%;
+      border: 1px solid $blue;
+      border-radius: 10px;
+      margin-top: 2rem;
+      display: flex;
+      overflow: hidden;
+      .is-legal {
+        padding: 0.5rem 1rem;
+        color: $blue;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+      }
+    }
+
+    .tags {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      justify-content: center;
+    }
+    .actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .active {
+      background: $blue;
+      color: white !important;
+    }
+  }
+}
+</style>

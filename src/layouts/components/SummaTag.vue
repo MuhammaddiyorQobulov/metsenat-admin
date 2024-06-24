@@ -24,7 +24,7 @@ const emits = defineEmits(["change"]);
       <p class="bold-5">{{ props.count }}</p>
       <p class="text-blue">UZS</p>
     </div>
-    <p class="bold-5" v-else>Barchasi</p>
+    <p class="bold-5" v-else>Boshqa</p>
     <tick-icon class="tick" v-if="count == active" />
   </div>
 </template>

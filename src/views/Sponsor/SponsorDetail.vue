@@ -6,7 +6,7 @@ import { ChevronLeftIcon } from "@/assets/icons/chevron-left";
 import { EditIcon } from "@/assets/icons/edit";
 import ModalComponent from "@/components/ModalComponent.vue";
 import MainButton from "@/components/MainButton.vue";
-import SponsorEdit from "@/views/Home/Sponsor/SponsorEdit";
+import SponsorEdit from "@/views/Sponsor/SponsorEdit";
 
 const sponsorStore = useSponsorStore();
 const route = useRoute();
