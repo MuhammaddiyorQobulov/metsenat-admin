@@ -20,11 +20,11 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get("/student-list/", {
+        const res = await api.get("/students", {
           page: page,
           page_size: size,
         });
-        this.students = res.data.results;
+        this.students = res.data;
         this.count = {
           ...this.count,
           page,
@@ -43,7 +43,7 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.post("/student-create/", data);
+        const res = await api.post("/students", data);
         this.singleStudent = res.data;
         this.error = null;
       } catch (err) {
@@ -58,9 +58,9 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        await api.put(`/student-update/${id}/`, data);
+        await api.put(`/students/${id}`, data);
         this.error = null;
-        location.reload()
+        location.reload();
       } catch (err) {
         this.error = err.message;
       } finally {
@@ -72,8 +72,8 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get(`/student-detail/${id}`);
-        const sponsors = await api.get(`/student-sponsor/${id}/`);
+        const res = await api.get(`/students/${id}`);
+        const sponsors = await api.get(`/student-sponsor/${id}`);
         this.singleStudent = res.data;
         this.sponsors = sponsors.data.sponsors;
         this.error = null;
@@ -87,7 +87,7 @@ export const useStudentsStore = defineStore("studentsStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get("/institute-list/");
+        const res = await api.get("/institute-list");
         this.institutes = res.data;
         this.error = null;
       } catch (err) {

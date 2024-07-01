@@ -20,11 +20,11 @@ export const useSponsorStore = defineStore("sponsorStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get("/sponsor-list/", {
+        const res = await api.get("/sponsors", {
           page: page,
           page_size: size,
         });
-        this.datas = await res.data.results;
+        this.datas = await res.data;
         this.count = {
           ...this.count,
           page,
@@ -42,7 +42,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get(`/sponsor-detail/${id}/`);
+        const res = await api.get(`/sponsors/${id}`);
         this.detail = res.data;
         this.error = null;
       } catch (err) {
@@ -55,7 +55,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        this.detail = await api.put(`/sponsor-update/${id}/`, data);
+        this.detail = await api.put(`/sponsors/${id}/`, data);
         this.getSponsorDetail(id);
         this.error = null;
       } catch (err) {

@@ -35,24 +35,24 @@ const routes = [
     ],
   },
   {
-    path: "/students-add",
+    path: "/students",
     name: "students-add",
     component: AddStudent,
   },
   {
-    path: "/sponsor-detail/:id",
+    path: "/sponsors/:id",
     name: "sponsor-detail",
     component: SponsorDetail,
     meta: { requiresAuth: true },
   },
   {
-    path: "/student-detail/:id",
+    path: "/students/:id",
     name: "student-detail",
     component: StudentDetail,
     meta: { requiresAuth: true },
   },
   {
-    path: "/sponsor-add",
+    path: "/sponsors",
     name: "sponsor-add",
     component: SponsorAdd,
     meta: { requiresAuth: true },

@@ -57,7 +57,7 @@ const TableHead = [
     title: "AMALLAR",
     dataIndex: "actions",
     key: "8",
-    link: "sponsor-detail",
+    link: "sponsors",
   },
 ];
 </script>

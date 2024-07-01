@@ -10,6 +10,7 @@ const props = defineProps({
 const studentsStore = useStudentsStore();
 
 const getSingleInstitute = (id) => {
+  console.log(studentsStore.institutes);
   return studentsStore.institutes
     ? studentsStore.institutes.find((item) => item.id === id)
     : { id: 0, name: "-" };
@@ -29,7 +30,7 @@ const getSingleInstitute = (id) => {
       <tr class="trow" v-for="(tr, idx) in props.body" :key="tr.id">
         <td v-for="th in head" :key="th.key">
           <div v-if="th.dataIndex == 'index'">{{ idx + 1 }}</div>
-          <router-link v-if="th.link" :to="'/' + th.link + '/' + tr.id">
+          <router-link v-if="th.link" :to="'/' + th.link + '/' + tr._id">
             <EyeIcon />
           </router-link>
           <div v-if="th.dataIndex == 'created_at'">

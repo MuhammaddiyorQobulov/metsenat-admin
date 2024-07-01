@@ -14,9 +14,9 @@ export const useAuthStore = defineStore("authStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.post("/auth/login/", { username, password });
+        const res = await api.post("/auth/login", { username, password });
         const data = await res.data;
-        localStorage.setItem("token", data.refresh);
+        localStorage.setItem("token", data.token);
         this.user = data;
         this.error = null;
       } catch (err) {
