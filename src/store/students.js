@@ -12,6 +12,7 @@ export const useStudentsStore = defineStore("studentsStore", {
     },
     singleStudent: null,
     institutes: null,
+    
     sponsors: null,
     error: null,
   }),

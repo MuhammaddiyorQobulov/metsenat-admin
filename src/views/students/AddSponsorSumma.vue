@@ -21,9 +21,10 @@ const handleSubmitAddSponsor = async () => {
       emits("closeModal");
       summaStore.addSponsorSumma({
         ...data,
-        student: Math.floor(route.params.id),
+        student: route.params.id,
       });
     } else {
+      console.log(data);
       alert("Ma'lumotlarni to'ldirishda xatolik");
     }
   } catch (err) {
@@ -44,8 +45,8 @@ onMounted(() => {
         <option disabled :value="null">Homiyni Tanlang</option>
         <option
           v-for="item in sponsorsStore.datas"
-          :key="item.id"
-          :value="item.id"
+          :key="item._id"
+          :value="item._id"
           class="option"
         >
           {{ item.full_name }}

@@ -8,13 +8,13 @@ export const useSummaStore = defineStore("summaStore", {
     error: null,
   }),
   actions: {
-    async addSponsorSumma(props) {
+    async addSponsorSumma(sponsor) {
       const mainStore = useMainStore(getActivePinia());
       const studentsStore = useStudentsStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        await api.post("/sponsor-summa-create/", { ...props });
-        studentsStore.getSingleStudent(props.student);
+        await api.post("/student-sponsor/" + sponsor.student, { ...sponsor });
+        studentsStore.getSingleStudent(sponsor.student);
         this.error = null;
       } catch (err) {
         this.error = err.message;
@@ -29,7 +29,7 @@ export const useSummaStore = defineStore("summaStore", {
       try {
         await api.put(`/sponsor-summa-update/${id}/`, data);
         this.error = null;
-        location.reload()
+        location.reload();
       } catch (err) {
         this.error = err.message;
       } finally {
@@ -42,7 +42,7 @@ export const useSummaStore = defineStore("summaStore", {
       try {
         await api.delete(`/sponsor-summa-delete/${id}/`);
         this.error = null;
-        location.reload()
+        location.reload();
       } catch (err) {
         this.error = err.message;
       } finally {
