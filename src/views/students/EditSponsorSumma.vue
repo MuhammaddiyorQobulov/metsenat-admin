@@ -19,17 +19,18 @@ const props = defineProps({
 });
 
 const data = reactive({
-  sponsor: props.sponsor.sponsor.id,
+  sponsorId: props.sponsor.sponsor._id,
   summa: null,
 });
 
 const handleSubmitAddSponsor = async () => {
   try {
-    if (data.sponsor && data.summa) {
-      summaStore.editSponsorSumma(props.sponsor.id, {
+    if (data.sponsorId && data.summa) {
+      summaStore.editSponsorSumma(route.params.id, {
         ...data,
         student: Math.floor(route.params.id),
       });
+      
       emits("closeModal");
     } else {
       alert("Ma'lumotlarni to'ldirishda xatolik");
@@ -51,11 +52,11 @@ const deleteSponsorSumma = () => {
       <label for="sponsor" class="main-title bold-5"
         >F.I.SH. (Familiya Ism Sharifingiz)</label
       >
-      <select id="sponsor" v-model="data.sponsor" class="selects">
+      <select id="sponsor" v-model="data.sponsorId" class="selects">
         <option
           v-for="{ sponsor } in studentsStore.sponsors"
-          :key="sponsor.id"
-          :value="sponsor.id"
+          :key="sponsor._id"
+          :value="sponsor._id"
           class="option"
         >
           {{ sponsor.full_name }}

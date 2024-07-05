@@ -27,9 +27,12 @@ export const useSummaStore = defineStore("summaStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        await api.put(`/sponsor-summa-update/${id}/`, data);
-        this.error = null;
+        await api.put(
+          `/student-sponsor/${id}?sponsorId=${data.sponsorId}`,
+          data
+        );
         location.reload();
+        this.error = null;
       } catch (err) {
         this.error = err.message;
       } finally {
