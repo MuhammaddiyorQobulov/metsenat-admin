@@ -40,7 +40,7 @@ const handleSubmitAddSponsor = async () => {
 };
 
 const deleteSponsorSumma = () => {
-  summaStore.deleteSponsorSumma(props.sponsor.id);
+  summaStore.deleteSponsorSumma(route.params.id, props.sponsor._id);
   emits("closeModal");
 };
 </script>

@@ -70,7 +70,6 @@ export const useSponsorStore = defineStore("sponsorStore", {
       try {
         const res = await api.get("/tariff-list/");
         this.tarifs = res.data;
-        console.log(res.data);
         this.error = null;
       } catch (err) {
         this.error = err.message;

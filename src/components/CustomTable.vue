@@ -10,7 +10,6 @@ const props = defineProps({
 const studentsStore = useStudentsStore();
 
 const getSingleInstitute = (id) => {
-  console.log(studentsStore.institutes);
   return studentsStore.institutes
     ? studentsStore.institutes.find((item) => item.id === id)
     : { id: 0, name: "-" };

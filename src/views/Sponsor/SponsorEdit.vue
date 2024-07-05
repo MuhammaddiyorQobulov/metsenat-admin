@@ -25,7 +25,6 @@ onMounted(() => {
 });
 
 const handleSubmit = () => {
-  console.log(data);
   sponsorStore.EditSponsor(sponsor_id, data);
   emits("closeModal");
 };

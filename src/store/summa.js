@@ -36,11 +36,11 @@ export const useSummaStore = defineStore("summaStore", {
         mainStore.toggleIsFetching(false);
       }
     },
-    async deleteSponsorSumma(id) {
+    async deleteSponsorSumma(id, sponsorId) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        await api.delete(`/sponsor-summa-delete/${id}/`);
+        await api.delete(`/student-sponsor/${id}?sponsorId=${sponsorId}`);
         this.error = null;
         location.reload();
       } catch (err) {
