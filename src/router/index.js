@@ -52,7 +52,7 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
-    path: "/sponsors",
+    path: "/sponsors-add",
     name: "sponsor-add",
     component: SponsorAdd,
     meta: { requiresAuth: true },

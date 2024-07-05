@@ -1,12 +1,14 @@
 <script setup>
-import { reactive, defineEmits, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
 import MainButton from "@/components/MainButton.vue";
 import SummaTag from "@/layouts/components/SummaTag.vue";
 import { EyeIcon } from "@/assets/icons/eye";
 import { useSponsorStore } from "@/store/sponsors";
+import { useRouter } from "vue-router";
 
 const sponsorStore = useSponsorStore();
-const emits = defineEmits(["closeModal"]);
+const err = ref(null);
+const router = useRouter();
 const handleActive = (value) => {
   data.sum = value;
 };
@@ -14,8 +16,13 @@ const handleActive = (value) => {
 onMounted(() => {
   sponsorStore.getTarifs();
 });
-const handleSubmit = () => {
-  emits("closeModal");
+const handleSubmit = async () => {
+  const res = await sponsorStore.addSponsor(data);
+  if (!sponsorStore.error) {
+    router.push("/sponsors/" + res._id);
+  } else {
+    err.value = sponsorStore.error;
+  }
 };
 const data = reactive({
   full_name: null,
@@ -60,12 +67,20 @@ const data = reactive({
         <label for="tel" class="main-title bold-5">TELEFON RAQAMINGIZ</label>
         <input id="tel" type="tel" v-model="data.phone" class="input" />
 
-        <h3 class="main-title bold-5">Homiylik summasi</h3>
+        <label for="sponsor-status" class="main-title bold-5">FIRMA NOMI</label>
+        <input
+          type="text"
+          id="sponsor-status"
+          v-model="data.firm"
+          class="input"
+        />
+
+        <h3 class="main-title bold-5">HOMIYLIK SUMMASI</h3>
         <div class="tags">
           <summa-tag
             v-for="tag in sponsorStore.tarifs"
-            :key="tag.id"
-            :count="tag.summa"
+            :key="tag"
+            :count="tag"
             :active="data.sum"
             @change="handleActive"
           />
@@ -76,13 +91,13 @@ const data = reactive({
       <div class="actions">
         <main-button
           type="submit"
-          @onClick="handleSubmit"
           title="Natijalarni ko'rish"
         >
           <eye-icon
         /></main-button>
       </div>
     </form>
+    <div v-if="err" class="err">Malumot Toldirishda xatolik</div>
   </div>
 </template>
 
@@ -91,6 +106,9 @@ const data = reactive({
 .wrapper {
   width: 100%;
   background-color: $secondary;
+  .err {
+    color: red;
+  }
   .form {
     min-width: 35%;
     max-width: 500px;

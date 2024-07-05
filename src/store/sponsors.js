@@ -16,6 +16,21 @@ export const useSponsorStore = defineStore("sponsorStore", {
   }),
 
   actions: {
+    async addSponsor(data) {
+      const mainStore = useMainStore(getActivePinia());
+      mainStore.toggleIsFetching(true);
+      try {
+        const res = await api.post("/sponsors", data);
+        this.detail = res.data;
+        console.log(res.data);
+        this.error = null;
+      } catch (err) {
+        this.error = err.message;
+      } finally {
+        mainStore.toggleIsFetching(false);
+      }
+      return this.detail;
+    },
     async getSponsors({ page, size }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
@@ -68,8 +83,12 @@ export const useSponsorStore = defineStore("sponsorStore", {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
-        const res = await api.get("/tariff-list/");
-        this.tarifs = res.data;
+        const res = await api.get("/tarifs");
+        const arr = [];
+        res.data.forEach((e) => {
+          arr.push(e.value);
+        });
+        this.tarifs = arr;
         this.error = null;
       } catch (err) {
         this.error = err.message;

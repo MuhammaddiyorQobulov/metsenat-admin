@@ -6,8 +6,8 @@ import { useAuthStore } from "@/store/auth";
 import { useRouter } from "vue-router";
 
 const authStore = useAuthStore();
-const login = ref("metsenatadmin");
-const parol = ref("uF9aH1vZ3bV2kN2y");
+const login = ref(null);
+const parol = ref(null);
 const error = ref(null);
 const router = useRouter();
 
@@ -24,7 +24,7 @@ const handleSubmit = async () => {
   router.push("/");
   error.value = null;
 };
-</script> 
+</script>
 
 <template>
   <div class="container">
