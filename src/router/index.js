@@ -28,14 +28,14 @@ const routes = [
         component: SponsorsList,
       },
       {
-        path: "students",
+        path: "students", 
         name: "students",
         component: StudentsList,
       },
     ],
   },
   {
-    path: "/students",
+    path: "/students-add",
     name: "students-add",
     component: AddStudent,
   },

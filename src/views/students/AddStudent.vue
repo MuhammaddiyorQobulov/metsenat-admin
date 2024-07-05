@@ -12,7 +12,7 @@ const studentsStore = useStudentsStore();
 const handleSubmit = async () => {
   const data = await studentsStore.createStudent(student);
   if (!studentsStore.error) {
-    router.push("/student-detail/" + data.id);
+    router.push("/students/" + data._id);
   } else {
     err.value = studentsStore.error;
   }
