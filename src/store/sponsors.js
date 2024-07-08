@@ -22,9 +22,9 @@ export const useSponsorStore = defineStore("sponsorStore", {
       try {
         const res = await api.post("/sponsors", data);
         this.detail = res.data;
-        console.log(res.data);
         this.error = null;
       } catch (err) {
+        console.log(err);
         this.error = err.message;
       } finally {
         mainStore.toggleIsFetching(false);

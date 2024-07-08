@@ -2,8 +2,8 @@ import axios from "axios";
 
 const api = axios.create({
   // baseURL: "https://club.metsenat.uz/api/v1",
-  baseURL: "https://posts-server-39wq.onrender.com/api",
-  // baseURL: "http://localhost:5002/api",
+  // baseURL: "https://posts-server-39wq.onrender.com/api",
+  baseURL: "http://localhost:5002/api",
   headers: {
     "Content-Type": "application/json",
   },

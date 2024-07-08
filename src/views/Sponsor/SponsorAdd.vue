@@ -17,11 +17,16 @@ onMounted(() => {
   sponsorStore.getTarifs();
 });
 const handleSubmit = async () => {
-  const res = await sponsorStore.addSponsor(data);
-  if (!sponsorStore.error) {
-    router.push("/sponsors/" + res._id);
-  } else {
-    err.value = sponsorStore.error;
+  try {
+    const res = await sponsorStore.addSponsor(data);
+    if (!sponsorStore.error) {
+      router.push("/sponsors/" + res._id);
+    } else {
+      err.value = sponsorStore.error;
+    }
+  } catch (error) {
+    console.log(error);
+    err.value = error.message;
   }
 };
 const data = reactive({
@@ -56,7 +61,7 @@ const data = reactive({
         </p>
       </div>
       <div class="inputs">
-        <label for="sponsor-status" class="main-title bold-5">F.I.SH</label>
+        <label for="sponsor-status" class="bold-5">F.I.SH</label>
         <input
           type="text"
           id="sponsor-status"
@@ -64,10 +69,10 @@ const data = reactive({
           class="input"
         />
 
-        <label for="tel" class="main-title bold-5">TELEFON RAQAMINGIZ</label>
+        <label for="tel" class="bold-5">TELEFON RAQAMINGIZ</label>
         <input id="tel" type="tel" v-model="data.phone" class="input" />
 
-        <label for="sponsor-status" class="main-title bold-5">FIRMA NOMI</label>
+        <label for="sponsor-status" class="bold-5">FIRMA NOMI</label>
         <input
           type="text"
           id="sponsor-status"
@@ -75,7 +80,7 @@ const data = reactive({
           class="input"
         />
 
-        <h3 class="main-title bold-5">HOMIYLIK SUMMASI</h3>
+        <label class="bold-5">HOMIYLIK SUMMASI</label>
         <div class="tags">
           <summa-tag
             v-for="tag in sponsorStore.tarifs"
@@ -89,15 +94,12 @@ const data = reactive({
         </div>
       </div>
       <div class="actions">
-        <main-button
-          type="submit"
-          title="Natijalarni ko'rish"
-        >
+        <main-button type="submit" title="Natijalarni ko'rish">
           <eye-icon
         /></main-button>
+        <div v-if="err" class="err">{{ err }}</div>
       </div>
     </form>
-    <div v-if="err" class="err">Malumot Toldirishda xatolik</div>
   </div>
 </template>
 
@@ -107,13 +109,20 @@ const data = reactive({
   width: 100%;
   background-color: $secondary;
   .err {
+    position: absolute;
     color: red;
+    left: 35%;
+    top: -50%;
   }
   .form {
     min-width: 35%;
     max-width: 500px;
     height: 100%;
     padding: 2rem 120px;
+    .main-title {
+      font-size: 25px;
+    }
+
     .inputs {
       display: flex;
       flex-direction: column;
@@ -152,6 +161,7 @@ const data = reactive({
       justify-content: center;
     }
     .actions {
+      position: relative;
       display: flex;
       gap: 1rem;
     }

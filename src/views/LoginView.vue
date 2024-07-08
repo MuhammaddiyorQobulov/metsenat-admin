@@ -12,8 +12,8 @@ const error = ref(null);
 const router = useRouter();
 
 const handleSubmit = async () => {
-  if (login.value.length <= 4 || parol.value.length <= 4) {
-    error.value = "Login yoki parol xatolik mavjud";
+  if (login.value.length < 4 || parol.value.length < 4) {
+    error.value = "Username and Password more than '3' characters";
     return;
   }
   await authStore.Login({ username: login.value, password: parol.value });
