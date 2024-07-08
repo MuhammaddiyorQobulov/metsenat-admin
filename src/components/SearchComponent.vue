@@ -1,8 +1,10 @@
 <script setup>
 import { SearchIcon } from "@/assets/icons/search";
-import { ref } from "vue";
+import { ref, defineEmits } from "vue";
+
+const emit = defineEmits(["onChange"]);
 const handleSearch = () => {
-  console.log(model.value);
+  emit("onChange", model.value);
 };
 const model = ref("");
 </script>
@@ -18,6 +20,7 @@ const model = ref("");
       type="text"
       id="search"
       placeholder="Izlash"
+      @change="handleSearch"
     />
   </form>
 </template>

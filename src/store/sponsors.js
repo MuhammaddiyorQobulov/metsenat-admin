@@ -13,6 +13,7 @@ export const useSponsorStore = defineStore("sponsorStore", {
     detail: null,
     error: null,
     tarifs: null,
+    search: "",
   }),
 
   actions: {
@@ -24,20 +25,20 @@ export const useSponsorStore = defineStore("sponsorStore", {
         this.detail = res.data;
         this.error = null;
       } catch (err) {
-        console.log(err);
         this.error = err.message;
       } finally {
         mainStore.toggleIsFetching(false);
       }
       return this.detail;
     },
-    async getSponsors({ page, size }) {
+    async getSponsors({ page = 1, size = 10 }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get("/sponsors", {
           page: page,
           size: size,
+          search: this.search,
         });
         this.datas = await res.data.sponsors;
         this.count = {

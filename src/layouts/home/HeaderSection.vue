@@ -6,9 +6,13 @@ import SponsorsFilter from "./SponsorsFilter.vue";
 import StudentsFilter from "./StudentsFilter.vue";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
+import { useSponsorStore } from "@/store/sponsors";
+import { useStudentsStore } from "@/store/students";
 
 const route = useRoute();
 const isModal = ref(false);
+const sponsorStore = useSponsorStore();
+const studentsStore = useStudentsStore();
 
 const tabs = [
   {
@@ -30,6 +34,18 @@ const tabs = [
     name: "students",
   },
 ];
+
+const handleSearch = (value) => {
+  if (route.name === "sponsors") {
+    sponsorStore.search = value;
+    sponsorStore.getSponsors({ page: 1, size: 10 });
+  }
+  if (route.name === "students") {
+    studentsStore.search = value;
+    studentsStore.getStudents({ page: 1, size: 10 });
+  }
+  console.log(route.name);
+};
 </script>
 
 <template>
@@ -42,15 +58,21 @@ const tabs = [
       </thead>
     </table>
     <div class="search-filter" v-if="route.name !== 'dashboard'">
-      <search-component />
+      <search-component @on-change="handleSearch" />
       <div class="filter" @click="() => (isModal = true)">
         <filter-icon />
         <p>Filter</p>
       </div>
     </div>
     <modal-component v-if="isModal" @close-modal="() => (isModal = false)">
-      <sponsors-filter v-if="route.name === 'sponsors'" @close-modal="() => (isModal = false)" />
-      <students-filter v-if="route.name === 'students'" @close-modal="() => (isModal = false)" />
+      <sponsors-filter
+        v-if="route.name === 'sponsors'"
+        @close-modal="() => (isModal = false)"
+      />
+      <students-filter
+        v-if="route.name === 'students'"
+        @close-modal="() => (isModal = false)"
+      />
     </modal-component>
   </div>
 </template>

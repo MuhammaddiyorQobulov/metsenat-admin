@@ -12,7 +12,7 @@ export const useStudentsStore = defineStore("studentsStore", {
     },
     singleStudent: null,
     institutes: null,
-
+    search: null,
     sponsors: null,
     error: null,
   }),
@@ -24,6 +24,7 @@ export const useStudentsStore = defineStore("studentsStore", {
         const res = await api.get("/students", {
           page: page,
           size: size,
+          search: this.search,
         });
         this.students = res.data.students;
         this.count = {
