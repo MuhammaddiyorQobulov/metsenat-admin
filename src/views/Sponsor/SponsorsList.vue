@@ -4,11 +4,15 @@ import { useSponsorStore } from "@/store/sponsors";
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import CustomTable from "@/components/CustomTable";
+import { useRouter } from "vue-router";
+import { PlusIcon } from "@/assets/icons/plus";
+import MainButton from "@/components/MainButton.vue";
 
 const sponsorStore = useSponsorStore();
 const { t } = useI18n();
+const router = useRouter();
 onMounted(() => {
-  sponsorStore.getSponsors({ page: 1, size: 15 });
+  sponsorStore.getSponsors({ page: 1, size: 10 });
 });
 
 const HandlePaginate = (page, size) => {
@@ -64,6 +68,14 @@ const TableHead = [
 
 <template>
   <div class="container" v-if="sponsorStore.datas">
+    <main-button
+      title="Sponsor Qo'shish"
+      style="width: max-content; margin-top: 1rem; margin-left: auto"
+      @click="() => router.push('/sponsors-add')"
+    >
+      <plus-icon
+    /></main-button>
+
     <custom-table :body="sponsorStore.datas" :head="TableHead" />
     <div class="pagination">
       <p>

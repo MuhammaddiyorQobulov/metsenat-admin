@@ -37,9 +37,9 @@ export const useSponsorStore = defineStore("sponsorStore", {
       try {
         const res = await api.get("/sponsors", {
           page: page,
-          page_size: size,
+          size: size,
         });
-        this.datas = await res.data;
+        this.datas = await res.data.sponsors;
         this.count = {
           ...this.count,
           page,

@@ -5,7 +5,7 @@ import SummaTag from "@/layouts/components/SummaTag.vue";
 import { EyeIcon } from "@/assets/icons/eye";
 import { useSponsorStore } from "@/store/sponsors";
 import { useRouter } from "vue-router";
-
+import { ChevronLeftIcon } from "@/assets/icons/chevron-left";
 const sponsorStore = useSponsorStore();
 const err = ref(null);
 const router = useRouter();
@@ -40,6 +40,10 @@ const data = reactive({
 </script>
 
 <template>
+  <div class="head container">
+    <chevron-left-icon @click="router.go(-1)" style="cursor: pointer" />
+    <h2 class="bold-5">Talaba Qo'shish</h2>
+  </div>
   <div class="wrapper">
     <form @submit.prevent="handleSubmit" class="form">
       <h1 class="main-title">Homiy sifatida ariza topshirish</h1>
@@ -100,22 +104,39 @@ const data = reactive({
         <div v-if="err" class="err">{{ err }}</div>
       </div>
     </form>
+    <div class="left-side"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "@/styles/variables";
+.head {
+  width: calc(100% - 240px);
+  background: $secondary;
+  padding: 20px 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
 .wrapper {
   width: 100%;
-  background-color: $secondary;
+  background-color: $primary;
+  display: flex;
   .err {
     position: absolute;
     color: red;
     left: 35%;
     top: -50%;
   }
+  .left-side {
+    width: 100%;
+    background: url("@/assets/images/image.png") no-repeat fixed bottom right;
+    background-size: 50%;
+  }
   .form {
-    min-width: 35%;
     max-width: 500px;
     height: 100%;
     padding: 2rem 120px;
