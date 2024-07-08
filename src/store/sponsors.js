@@ -17,6 +17,17 @@ export const useSponsorStore = defineStore("sponsorStore", {
   }),
 
   actions: {
+    filterSponsors(data) {
+      console.log("filterSponsors => ", data);
+      const { status, sum } = data;
+      this.getSponsors({
+        page: 1,
+        size: 10,
+        search: this.search,
+        filterByStatus: status || null,
+        filterBySum: sum || null,
+      });
+    },
     async addSponsor(data) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
@@ -31,20 +42,21 @@ export const useSponsorStore = defineStore("sponsorStore", {
       }
       return this.detail;
     },
-    async getSponsors({ page = 1, size = 10 }) {
+    async getSponsors(query = { page: 1, size: 10 }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get("/sponsors", {
-          page: page,
-          size: size,
+          page: query.page,
+          size: query.size,
           search: this.search,
+          ...query,
         });
         this.datas = await res.data.sponsors;
         this.count = {
           ...this.count,
-          page,
-          size,
+          page: query.page,
+          size: query.size,
           amount: await res.data.count,
         };
         this.error = null;

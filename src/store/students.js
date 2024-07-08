@@ -17,20 +17,31 @@ export const useStudentsStore = defineStore("studentsStore", {
     error: null,
   }),
   actions: {
-    async getStudents({ page, size }) {
+    filterStudents(data) {
+      const { type, otmId } = data;
+      this.getStudents({
+        page: 1,
+        size: 10,
+        search: this.search,
+        filterByInstitute: otmId || null,
+        filterByType: type || null,
+      });
+    },
+    async getStudents(query = { page: 1, size: 10 }) {
       const mainStore = useMainStore(getActivePinia());
       mainStore.toggleIsFetching(true);
       try {
         const res = await api.get("/students", {
-          page: page,
-          size: size,
+          page: query.page,
+          size: query.size,
           search: this.search,
+          ...query,
         });
         this.students = res.data.students;
         this.count = {
           ...this.count,
-          page,
-          size,
+          page: query.page,
+          size: query.size,
           amount: await res.data.count,
         };
         this.error = null;

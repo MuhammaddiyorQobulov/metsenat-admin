@@ -13,7 +13,7 @@ const emits = defineEmits(["closeModal"]);
 
 const handleSubmit = () => {
   emits("closeModal");
-  studentsStore.getStudents({ type: type.value, otmId: otm.value });
+  studentsStore.filterStudents({ type: type.value, otmId: otm.value });
 };
 const handleDefaultFilter = () => {
   type.value = null;

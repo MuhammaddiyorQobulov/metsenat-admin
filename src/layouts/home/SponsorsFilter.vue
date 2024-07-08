@@ -4,7 +4,9 @@ import MainButton from "@/components/MainButton.vue";
 import SummaTag from "@/layouts/components/SummaTag.vue";
 import { EyeIcon } from "@/assets/icons/eye";
 import { ClearIcon } from "@/assets/icons/clear";
+import { useSponsorStore } from "@/store/sponsors";
 
+const sponsorStore = useSponsorStore();
 const emits = defineEmits(["closeModal"]);
 const status = ref("barchasi");
 const active = ref(0);
@@ -13,10 +15,14 @@ const tags = [0, 1000000, 5000000, 7000000, 10000000, 30000000, 50000000];
 const handleActive = (value) => {
   active.value = value;
 };
-const onChange = (_, dateString) => {
-  dateRange.value = dateString;
-};
+// const onChange = (_, dateString) => {
+//   dateRange.value = dateString;
+// };
 const handleSubmit = () => {
+  sponsorStore.filterSponsors({
+    status: status.value,
+    sum: active.value,
+  });
   emits("closeModal");
 };
 const handleDefaultFilter = () => {
@@ -34,10 +40,10 @@ const handleDefaultFilter = () => {
       <label for="sponsor-status" class="main-title bold-5">ARIZA HOLATI</label>
       <select id="sponsor-status" v-model="status" class="selects">
         <option value="barchasi">Barchasi</option>
-        <option value="yangi">Yangi</option>
-        <option value="moderatsiyada">Moderatsiyada</option>
-        <option value="tasdiqlangan">Tasdiqlangan</option>
-        <option value="bekor qilingan">Bekor qilingan</option>
+        <option value="Yangi">Yangi</option>
+        <option value="Moderatsiyada">Moderatsiyada</option>
+        <option value="Tasdiqlangan">Tasdiqlangan</option>
+        <option value="Bekor qilingan">Bekor qilingan</option>
       </select>
 
       <h3 class="main-title bold-5">Homiylik summasi</h3>
@@ -51,15 +57,15 @@ const handleDefaultFilter = () => {
         />
       </div>
 
-      <h3 class="main-title bold-5">Sana</h3>
-      <div class="date">
+      <!-- <h3 class="main-title bold-5">Sana</h3> -->
+      <!-- <div class="date">
         <a-range-picker
           class="date-picker"
           format="YYYY-MM-DD"
           @change="onChange"
           :defaultValue="dateRange"
         />
-      </div>
+      </div> -->
     </div>
     <div class="actions">
       <main-button

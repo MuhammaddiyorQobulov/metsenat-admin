@@ -36,7 +36,7 @@ const getSingleInstitute = (id) => {
             {{ moment(tr[th.dataIndex]).format("YYYY-MM-DD") }}
           </div>
           <div v-else-if="th.dataIndex == 'institute'">
-            {{ getSingleInstitute(tr[th.dataIndex].id).name }}
+            {{ getSingleInstitute(tr[th.dataIndex].id).name || "-" }}
           </div>
           <div v-else-if="th.dataIndex == 'type'">
             {{ tr[th.dataIndex] == 1 ? "Bakalavr" : "Magistratura" }}
@@ -57,9 +57,7 @@ const getSingleInstitute = (id) => {
         </td>
       </tr>
     </tbody>
-    <div v-else class="no-data">
-      Hozirda ma'lumotlar mavjud emas
-    </div>
+    <div v-else class="no-data">Hozirda ma'lumotlar mavjud emas</div>
   </table>
 </template>
 
