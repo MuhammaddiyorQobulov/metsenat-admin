@@ -26,7 +26,7 @@ const handleSubmit = () => {
   emits("closeModal");
 };
 const handleDefaultFilter = () => {
-  status.value = "barchasi";
+  status.value = null;
   active.value = 0;
   emits("closeModal");
   dateRange.value = [];
@@ -39,8 +39,8 @@ const handleDefaultFilter = () => {
     <div class="inputs">
       <label for="sponsor-status" class="main-title bold-5">ARIZA HOLATI</label>
       <select id="sponsor-status" v-model="status" class="selects">
-        <option :value="null">Barchasi</option>
-        <option value="Yangi">Yangi</option>
+        <option value="null">Barchasi</option>
+        <option value="Yangi">Yangii</option>
         <option value="Moderatsiyada">Moderatsiyada</option>
         <option value="Tasdiqlangan">Tasdiqlangan</option>
         <option value="Bekor qilingan">Bekor qilingan</option>
