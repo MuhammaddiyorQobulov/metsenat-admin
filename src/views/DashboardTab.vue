@@ -9,7 +9,6 @@ const dashboardStore = useDashboardStore();
 onMounted(() => {
   dashboardStore.getDashboardDatas();
 });
-
 </script>
 
 <template>
@@ -36,8 +35,11 @@ onMounted(() => {
 @import "@/styles/variables";
 .costs {
   width: 100%;
+  height: calc(100vh - 12.95rem);
+  background: url("@/assets/images/image.png") no-repeat fixed bottom;
+  background-size: 70%;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
   gap: 30px;
   margin-top: 2rem;

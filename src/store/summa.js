@@ -18,7 +18,7 @@ export const useSummaStore = defineStore("summaStore", {
         this.error = null;
       } catch (err) {
         this.error = err.message;
-        alert("Homiyda Bunday summa mavjud emas");
+        console.log(err.message);
       } finally {
         mainStore.toggleIsFetching(false);
       }
