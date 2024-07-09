@@ -8,7 +8,7 @@ import { useSponsorStore } from "@/store/sponsors";
 
 const sponsorStore = useSponsorStore();
 const emits = defineEmits(["closeModal"]);
-const status = ref("barchasi");
+const status = ref(null);
 const active = ref(0);
 const dateRange = reactive([]);
 const tags = [0, 1000000, 5000000, 7000000, 10000000, 30000000, 50000000];
@@ -39,7 +39,7 @@ const handleDefaultFilter = () => {
     <div class="inputs">
       <label for="sponsor-status" class="main-title bold-5">ARIZA HOLATI</label>
       <select id="sponsor-status" v-model="status" class="selects">
-        <option value="barchasi">Barchasi</option>
+        <option :value="null">Barchasi</option>
         <option value="Yangi">Yangi</option>
         <option value="Moderatsiyada">Moderatsiyada</option>
         <option value="Tasdiqlangan">Tasdiqlangan</option>
